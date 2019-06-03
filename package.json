@@ -1,0 +1,25 @@
+{
+  "name": "K-Map",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "docs:dev": "vuepress dev docs",
+    "docs:build": "vuepress build docs",
+    "deploy": "bash deploy.sh"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YaliixxG/K-Map.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/YaliixxG/K-Map/issues"
+  },
+  "homepage": "https://github.com/YaliixxG/K-Map#readme",
+  "devDependencies": {
+    "vuepress": "^0.14.11"
+  }
+}
