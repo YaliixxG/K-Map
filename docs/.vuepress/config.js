@@ -7,6 +7,7 @@ module.exports = {
         editLinks: true,
         editLinkText: '编辑页面',
         docsDir: 'docs',
+        lastUpdated: '最近更新',
         locales: {
             // 键名是该语言所属的子路径
             // 作为特例，默认语言可以使用 '/' 作为其路径。
@@ -23,7 +24,7 @@ module.exports = {
         sidebar: [
             {
                 title: '前端',
-                children: ['/css/css1', '/css/css2']
+                children: ['/FrontEnd/arcgis']
             },
 
             {
