@@ -14,14 +14,14 @@ Javascript的API全部都是英文，所以我把自己要用到的记下来，�
 ```js
 //通常，使用DIV将地图添加到页面。地图的宽度和高度初始化为DIV容器的宽度和高度。
 // 定义地图
-            let map = new Map("map", {
-                extent:extent, //地图可视范围，需设置
-                center: [114.309, 30.578], //地图加载后，初始位置
-                zoom: 16, //放大级别，值越大放大的比例就越大
-                slider: false,
-                maxZoom: 18, //地图最大缩放级别
-                minZoom: 7, //地图最小缩放级别
-                logo: false //不显示Esri的logo
+let map = new Map("map", {
+    extent:extent, //地图可视范围，需设置
+    center: [114.309, 30.578], //地图加载后，初始位置
+    zoom: 16, //放大级别，值越大放大的比例就越大
+    slider: false,
+    maxZoom: 18, //地图最大缩放级别
+    minZoom: 7, //地图最小缩放级别
+    logo: false //不显示Esri的logo
             });
 ```  
 
@@ -93,3 +93,110 @@ tb.setFillSymbol(fillSymbol);
 tb.on('draw-complete', event);
 };
 ``` 
+#### `esri/symbols/PictureMarkerSymbol` 点符号用于在图形图层上绘制点和多点
+
+```js
+//PictureMarkerSymbol以参数传入
+//用法：new PictureMarkerSymbol(url, width, height)
+// 设置点正常的填充样式
+let markerSymbol = new PictureMarkerSymbol('images/toolbar/mapAddPoint.png', 35, 50);
+// 设置点选中的填充样式
+let markerSelectedSymbol = new PictureMarkerSymbol('images/toolbar/mapSelectedPoint.png', 35, 50);
+``` 
+#### `esri/symbols/SimpleLineSymbol` 线符号用于在图形图层上绘制线性要素
+
+```js
+//SimpleLineSymbol以参数传入
+//用法：new SimpleLineSymbol(style, color, width)
+// 创建线符号（时空圈选--虚线 STYLE_DASH）
+let lineSymbol = new SimpleLineSymbol(SimpleLineSymbol.STYLE_DASH, new Color([0, 180, 237]), 2);
+``` 
+#### `esri/symbols/SimpleFillSymbol` 填充符号用于在图形图层上绘制面要素
+
+```js
+//SimpleFillSymbol以参数传入
+//用法：new SimpleFillSymbol(style, outline, color)
+// 创建面符号
+//lineSymbol为上面⤴️创建的线符号
+let fillSymbol = SimpleFillSymbol(SimpleFillSymbol.STYLE_SOLID, lineSymbol, new Color([125, 184, 248, 0.16]));
+``` 
+#### `esri/geometry/Point` 定个点坐标，由X坐标和Y坐标定义的位置。
+
+```js
+//Point以参数传入
+//用法：new Point(x, y, spatialReference)
+new Point(x, y, spatialReference)
+``` 
+#### `esri/geometry/Polyline` 折线，一个路径数组，其中每个路径是一个点数组。
+
+```js
+//Polyline以参数传入
+//用法：new Polyline(json)
+// 生成绘制的图形
+const polylineJson = {
+'paths': [...path],//绘制的路径数组
+'spatialReference': {'wkid': 4326}
+};
+const polyline = new Polyline(polylineJson);
+``` 
+#### `esri/layers/GraphicsLayer` 设置自己的图形图层 
+
+```js
+//GraphicsLayer以参数传入
+//用法：new GraphicsLayer()/new GraphicsLayer(options?)
+// 设置图解图层
+let gl = new GraphicsLayer();
+// 设置路线图层
+let lineLayer = new GraphicsLayer('lineLayer');
+``` 
+#### `esri/graphic` 设置图形 
+
+```js
+//Graphic以参数传入
+//用法：new Graphic(json)
+//new Graphic(geometry?, symbol?, attributes?, infoTemplate?)
+const graphic = new Graphic({
+        'geometry': polyline,
+        'symbol': {
+        'color': [13, 195, 252, 0.9],
+        'outline': {
+        'color': [13, 195, 252],
+        'width': 2,
+        'type': 'esriSLS',
+        'style': 'esriSLSSolid'
+        },
+        'type': 'esriSFS',
+        'style': 'esriSFSSolid'
+    }
+});
+``` 
+#### `dojo/dom` DOM操作
+
+需以参数传入，用于DOM操作。
+
+#### `dojo/on` 在元素上绑定events，需要引用它，通过on方法来实现。
+
+on的返回值是一个对象，只有一个remove方法。  
+on.once(element,event name,handler)，参数同on一样，这个方法顾名思义就是只执行一次，在执行了handler后将会自动remove。  
+一个元素可以绑定多个events，每个event按照绑定的先后顺序来执行的。
+```js
+// on以参数传入
+
+//有前缀写法
+obj.on('mouse-over',function(evt){
+   ...
+})
+//无前缀写法
+on(myDiv, mouse.enter,function(evt){
+            domStyle.set(myDiv,"backgroundColor", "red");
+        });
+//移除事件
+ let handler = on(myDiv, mouse.leave,function(evt){
+            domStyle.set(myDiv,"backgroundColor", "");
+        });
+        handler.remove();//移除event
+``` 
+#### `dojo/domReady!` 是一个AMD加载的插件，将等到DOM完成加载后再返回。  
+
+只是等待DOM完成加载，而不等待其他require()或dojo.require()调用完成。  在DOM加载完之前不会调用。
+
