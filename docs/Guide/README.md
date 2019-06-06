@@ -13,6 +13,9 @@ title: 为什么要写博客？
 ::: 
 
 
-好好学习，天天向上 (●´∀｀●)ﾉ  :tada: :100:
+好好学习，天天向上。 (●´∀｀●)ﾉ :100:
 
 ![示例](../.vuepress/public/imgs/dva.jpeg)
+
+
+<Valine></Valine>

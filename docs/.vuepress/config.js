@@ -1,7 +1,20 @@
 module.exports = {
     title: 'YaliixxG ❤',
     description: '自我学习的前端知识点整理以及拓展和debug。',
-    head: [['link', { rel: 'icon', href: '/favicon.png' }]],
+    head: [
+        ['link', { rel: 'icon', href: '/favicon.png' }],
+        ['link', { rel: 'manifest', href: '/manifest.json' }]
+    ],
+    serviceWorker: true,
+    plugins: {
+        '@vuepress/pwa': {
+            serviceWorker: true,
+            updatePopup: {
+                message: "发现新内容可用",
+                buttonText: "刷新"
+            }
+        }
+    },
     themeConfig: {
         repo: 'YaliixxG/K-Map',
         editLinks: true,
@@ -16,6 +29,12 @@ module.exports = {
             }
         },
         lastUpdated: '上次更新',
+        serviceWorker: {
+            updatePopup: {
+                message: "内容已更新",
+                buttonText: "刷新"
+            }
+        },
         nav: [
             { text: '首页', link: '/' },
             { text: '前言', link: '/Guide/' },

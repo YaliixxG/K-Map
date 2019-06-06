@@ -1,0 +1,16 @@
+{
+    "name": "YaliixxG ❤",
+    "short_name": "YaliixxG ❤",
+    "description": "自我学习的前端知识点整理以及拓展和debug。",
+    "icons": [
+        {
+            "src": "/avatar.jpeg",
+            "type": "image/png",
+            "sizes": "144x144"
+        }
+    ],
+    "background_color": "#2196f3",
+    "display": "standalone",
+    "start_url": "index.html"
+
+}
