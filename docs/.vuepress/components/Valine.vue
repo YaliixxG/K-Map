@@ -29,4 +29,7 @@ export default {
 </script>
 
 <style>
+.vwrap {
+    border-color:#FFB6C1 !important;
+}
 </style>
