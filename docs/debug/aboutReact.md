@@ -130,4 +130,13 @@ selectDom = () => {
         break;
         ...
     }
+```  
+#### 9. 在`this.setState({})`修改值后，利用这个值进行操作无效？
+答：`this.setState({})`为异步，马上进行操作很可能会拿不到这个值，所以需要在`this.setState({})`的回调中，进行操作。  
+```js
+this.setState({
+  key:'1'
+},() => {
+  console.log('在这里写操作代码！')
+})
 ```
