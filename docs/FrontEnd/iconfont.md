@@ -38,8 +38,8 @@ title: iconfont 图标字体
 
 -   weight 和 style：weight 定义字体是否为粗体，style 主要定义字体样式，如斜体。
 
-        ```js
-        @font-face {font-family: "iconfont";
+```js
+    @font-face {font-family: "iconfont";
 
     src: url('iconfont.eot?t=1562741131409'); /_ IE9 _/
     src: url('iconfont.eot?t=1562741131409#iefix') format('embedded-opentype'), /_ IE6-IE8 _/
@@ -48,7 +48,7 @@ title: iconfont 图标字体
     url('iconfont.ttf?t=1562741131409') format('truetype'), /_ chrome, firefox, opera, Safari, Android, iOS 4.2+ _/
     url('iconfont.svg?t=1562741131409#iconfont') format('svg'); /_ iOS 4.1- _/
     }
-    ```
+```
 
 #### TureTpe(.ttf) 格式：
 
@@ -64,5 +64,4 @@ title: iconfont 图标字体
 
 #### Embedded Open Type(.eot) 格式：
 
-.eot 字体是 IE 专用字体，可以从 TrueType 创建此格式字体,支持这种字体的浏览器有 【IE4+】  
-
+.eot 字体是 IE 专用字体，可以从 TrueType 创建此格式字体,支持这种字体的浏览器有 【IE4+】
