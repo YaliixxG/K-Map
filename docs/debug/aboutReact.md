@@ -140,5 +140,3 @@ this.setState({
   console.log('在这里写操作代码！')
 })
 ```
-#### 9.`_this.props.dispatch(...).then is not a function`  
-答：看是否引入`connect`,或者是否绑定model
