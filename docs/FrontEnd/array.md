@@ -75,10 +75,29 @@ console.log(entries.next().value); // [2, 'b']
 ```
 
 ### 3. from  
-根据已有的数组，通过它传入的参数来创建一个新数组。
+根据已有的数组，来创建一个新数组。
 
 复制arr这个数组  
 ```js
 let arr1 = Array.from(arr)
+```
+还可以传入函数，创建一个符合条件的数组
+```js
+//创建一个只包含 arr 数组中的偶数的新数组 arr1
+let arr1 = Array.from(arr,item => (item % 2 == 0))
+```
+
+### 3. Array.of  
+根据传入的参数来创建一个新数组。
+
+```js
+let arr1 = Array.of(1,2,3,4,5)
+//等同于
+let arr1 = [1,2,3,4,5]
+```
+也可以用来复制数组
+```js
+//复制 arr2 这个数组
+let arr1 = Array.of(...arr2)
 ```
 
