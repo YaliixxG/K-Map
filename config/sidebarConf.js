@@ -1,7 +1,7 @@
 module.exports = [
     {
         title: '前端',
-        children: ['/FrontEnd/arcgis', '/FrontEnd/iconfont', '/FrontEnd/array','/Expand/code']
+        children: ['/FrontEnd/arcgis', '/FrontEnd/iconfont', '/FrontEnd/array','/FrontEnd/code','/FrontEnd/AntiDitheringAndThrottle']
     },
 
     {
