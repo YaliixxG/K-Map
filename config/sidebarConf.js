@@ -8,7 +8,8 @@ module.exports = [
             '/FrontEnd/code',
             '/FrontEnd/AntiDitheringAndThrottle',
             '/FrontEnd/eventLoop',
-
+            '/FrontEnd/http2multiplexing',
+            '/FrontEnd/repaintAndreflow'
         ]
     },
 
