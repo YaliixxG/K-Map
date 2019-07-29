@@ -9,7 +9,8 @@ module.exports = [
             '/FrontEnd/AntiDitheringAndThrottle',
             '/FrontEnd/eventLoop',
             '/FrontEnd/http2multiplexing',
-            '/FrontEnd/repaintAndreflow'
+            '/FrontEnd/repaintAndreflow',
+            '/FrontEnd/BFC'
         ]
     },
 
