@@ -16,7 +16,7 @@ module.exports = [
 
     {
         title: '拓展',
-        children: ['/Expand/python']
+        children: ['/Expand/OS']
     },
     {
         title: 'DEBUG',
