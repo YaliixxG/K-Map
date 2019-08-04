@@ -10,7 +10,8 @@ module.exports = [
             '/FrontEnd/eventLoop',
             '/FrontEnd/http2multiplexing',
             '/FrontEnd/repaintAndreflow',
-            '/FrontEnd/BFC'
+            '/FrontEnd/BFC',
+            '/FrontEnd/arrow'
         ]
     },
 
