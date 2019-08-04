@@ -11,6 +11,7 @@ module.exports = [
             '/FrontEnd/http2multiplexing',
             '/FrontEnd/repaintAndreflow',
             '/FrontEnd/BFC',
+            '/FrontEnd/op',
             '/FrontEnd/arrow'
         ]
     },
