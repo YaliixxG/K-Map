@@ -52,4 +52,30 @@ var p = new Person('周杰伦', 20)
 关于构造函数内部 `return` 注意： 
 1. 如果不写`return this` 或者写`return this`，都直接返回默认的新对象，因为函数本身就做了这一步  
 2. 如果返回*基本的数据类型*，直接返回默认的新对象  
-3. 如果返回的是对象，则直接把这个对象返回到外界
+3. 如果返回的是对象，则直接把这个对象返回到外界  
+
+### 构造函数终极优化写法    
+
+这是一个终极的写法，但是很多时候还是根据需求来改变
+``` js
+    function Dog( option ) {
+        this._init( option )
+    }
+
+    Dog.prototype = {
+
+        _init: function( option ) {
+            this.name = option.name
+            this.age = option.age
+        }, 
+
+        eat: function(sth) {
+            console.log(this.name + '吃' + sth)
+        },
+
+        run: function(where) {
+            console.log(this.name + '跑' + where)
+        }
+
+    }
+```
