@@ -12,7 +12,8 @@ module.exports = [
             '/FrontEnd/repaintAndreflow',
             '/FrontEnd/BFC',
             '/FrontEnd/op',
-            '/FrontEnd/arrow'
+            '/FrontEnd/arrow',
+            '/FrontEnd/sheetJS'
         ]
     },
 
