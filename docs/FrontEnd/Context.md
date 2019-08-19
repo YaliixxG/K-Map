@@ -81,11 +81,11 @@ export default C
 > context使用了Provider（提供者）和Customer（消费者）模式，在顶层的Provider中传入value，在子孙级的Consumer中获取该值，并且能够传递函数，用来修改context。  
 
 我在上面的例子里面，进行以下操作：  
-1. 创建一个ContextPro的组件，这名字随便取的。在这个组件中，用`React.creatContext()`来创建一个context上下文对象，并且通过Context提供的`Provider`这个API写入我需要传递的数据以及方法
+1. 创建一个GoContext的组件，这名字随便取的。在这个组件中，用`React.creatContext()`来创建一个context上下文对象ContextPro，并且通过Context提供的`Provider`这个API写入我需要传递的数据以及方法
 2. 在需要传递数据的A组件中引用这个组件，并且让它包裹A组件
 3. 在C组件中通过Context提供的`Consumer`这个API来接收我们传递的数据和方法，并且*可以通过这个方法来改变我们ContextPro中存的数据值*  
 
-ContextPro.js  
+GoContext.js  
 ```js
 import React, { Component } from 'react';
 
