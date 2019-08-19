@@ -2,7 +2,7 @@
 title: 代码书写规范
 ---
 
-# 代码书写规范 
+# <font color="#4169E1">代码书写规范</font> 
 
 :smile: 书写规范参考于 [Code Guide by @AlloyTeam](http://alloyteam.github.io/CodeGuide/#project-naming)  
 其中有一些我自己需要特别注意的点。

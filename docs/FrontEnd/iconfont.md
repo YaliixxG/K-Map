@@ -1,7 +1,7 @@
 ---
 title: iconfont 图标字体
 ---
-# iconfont
+# <font color="#F0E68C">iconfont</font>
 ### 什么是 iconfont?
 
 图标字体，就是字体做的图标。

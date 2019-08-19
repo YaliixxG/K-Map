@@ -13,7 +13,8 @@ module.exports = [
             '/FrontEnd/BFC',
             '/FrontEnd/op',
             '/FrontEnd/arrow',
-            '/FrontEnd/sheetJS'
+            '/FrontEnd/sheetJS',
+            '/FrontEnd/Context'
         ]
     },
 

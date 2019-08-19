@@ -2,7 +2,7 @@
 title: BFC及其应用
 ---
 
-# BFC及其应用
+# <font color="#A0522D">BFC及其应用</font> 
 
 ### 什么是BFC？
 BFC（Block Formatting Context）中文叫块级格式化上下文。

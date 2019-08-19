@@ -1,7 +1,7 @@
 ---
 title: Array 数组的“新鲜"方法
 ---  
-# Array 数组的“新鲜"方法
+# <font color="#DB7093">Array 数组的“新鲜"方法</font>
 ### 1. 迭代器 @@iterator
 数组的迭代器方法需要通过`Symbol.iterator`来访问。  
 

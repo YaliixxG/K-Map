@@ -2,7 +2,7 @@
 title: JS 事件循环
 ---
 
-# Javascript 事件循环  
+# <font color="#FFA500">Javascript 事件循环 </font> 
 > JS主线程不断的循环往复的从任务队列中读取任务，执行任务，这中运行机制称为事件循环（event loop）。
 
 ### 今日头条面试题：
