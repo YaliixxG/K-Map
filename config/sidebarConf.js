@@ -14,7 +14,8 @@ module.exports = [
             '/FrontEnd/op',
             '/FrontEnd/arrow',
             '/FrontEnd/sheetJS',
-            '/FrontEnd/Context'
+            '/FrontEnd/Context',
+            '/FrontEnd/Key'
         ]
     },
 
