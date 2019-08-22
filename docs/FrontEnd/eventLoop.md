@@ -75,7 +75,8 @@ microtask主要包含：Promise.then、MutaionObserver、process.nextTick(Node.j
 
 #### Promise和async中的立即执行  
 Promise中的异步体现在then和catch中，所以写在Promise中的代码是被当做同步任务立即执行的。而在async/await中，在出现await出现之前，其中的代码也是立即执行的。  
-*实际上await是一个让出线程的标志*。await后面的表达式会先执行一遍，*将await后面的代码加入到microtask中，然后就会跳出整个async函数来执行后面的代码*。
+*实际上await是一个让出线程的标志*。await后面的表达式会先执行一遍，*将await后面的代码加入到microtask中，然后就会跳出整个async函数来执行后面的代码*。  
+Promise构造函数是同步执行，而 .then .catch .啥啥的是异步， 而且放到了微队列中，async/await 中，await 前面的是同步，await 后面的是异步，写法上是这样，但是其实是 语法糖，最后还会转为 Promise.then的形式。
 
 #### 运行顺序
 
