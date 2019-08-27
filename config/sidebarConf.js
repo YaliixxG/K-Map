@@ -18,7 +18,12 @@ module.exports = [
             '/FrontEnd/Key'
         ]
     },
-
+    {
+        title: '数据结构与算法',
+        children: [
+            '/DataStructureAndAlgorithm/basic'
+        ]
+    },
     {
         title: '基础',
         children: ['/Basic/OS','/Basic/Net']
