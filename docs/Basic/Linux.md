@@ -52,6 +52,10 @@ title: Linux操作系统编程
     ```linux
     ls -la /etc
     ```
+    * 浏览目录命令：ls，pwd
+    * 目录操作命令：cd，mkdir，rmdir
+    * 浏览文件命令：cat，more，less，head，tail
+    * 文件操作命令：cp，rm，mv，find，grep，tar
 ### 文件和目录  
 ### 进程和线程
 ### 线程同步与进程间通信
