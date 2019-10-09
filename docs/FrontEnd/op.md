@@ -1,6 +1,13 @@
 ---
 title: OP 面向对象
 ---
+
+<!--
+ * @Description: 面向对象
+ * @Date: 2019-08-01 20:31:39
+ * @LastEditTime: 2019-10-09 20:19:46
+ -->
+ 
 # <font color="#2F4F4F">面向对象</font>
 
 ### 什么是对象？  
@@ -82,6 +89,36 @@ var p = new Person('周杰伦', 20)
 
 ### 面向对象的三个特性
 
-* 封装
-* 继承
+* 封装：也就是把客观事物封装成抽象的类，并且类可以把自己的数据和方法只让可信的类或者对象操作，对不可信的进行信息隐藏。
+* 继承：它可以使用现有类的所有功能，并在无需重新编写原来的类的情况下对这些功能进行扩展。
 * 多态
+
+### 面向对象 - 继承  
+
+#### 内置对象类型判断 
+平常我们判断对象类型都是用 `typeof`，`toString()` 等等，但是他们对于内置对象的类型判断并不准确。  
+```js
+let arr = [1, 2, 3],
+    date = new Date();  
+
+    // 利用`typeof`来判断类型的话
+    console.log(typeof arr) // object
+    console.log(typeof date) //object  
+```  
+如上，会发现判断出来都是`object`类型，但是我们想得到更加准确的类型判断，拿到准确的构造函数类型。  
+
+<strong>`constructor`</strong> 就可以来帮我们准确的拿到构造函数的类型名称。  
+
+```js
+let arr = [1, 2, 3],
+    date = new Date();  
+
+    // 利用`typeof`来判断类型的话
+    console.log(arr.constructor.name) // Array
+    console.log(date.constructor.name) // Date  
+```    
+
+总得来说：  
+    1. `typeof`：可以判断是是否是一个对象，或者其它基础类型  
+    2. `constructor`：可以用来判断内置对象的构造函数类型  
+    3. `object.prototype.toString.call()`：这种可以用来判断老祖宗是不是object
