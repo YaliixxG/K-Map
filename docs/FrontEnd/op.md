@@ -5,7 +5,7 @@ title: OP 面向对象
 <!--
  * @Description: 面向对象
  * @Date: 2019-08-01 20:31:39
- * @LastEditTime: 2019-10-09 20:19:46
+ * @LastEditTime: 2019-10-09 20:41:32
  -->
  
 # <font color="#2F4F4F">面向对象</font>
@@ -116,9 +116,51 @@ let arr = [1, 2, 3],
     // 利用`typeof`来判断类型的话
     console.log(arr.constructor.name) // Array
     console.log(date.constructor.name) // Date  
-```    
+```  
+
+<strong>`Object.prototype.toString.call()`</strong> 可以判断最原始的类型是哪一个，然后构造函数类型的名称是什么。
+
+```js
+let arr = [1, 2, 3],
+    date = new Date();  
+
+    // 利用`typeof`来判断类型的话
+    console.log(Object.prototype.toString.call(arr)) // [Object, Array]
+    console.log(Object.prototype.toString.call(date)) // [Object, Date]
+``` 
 
 总得来说：  
-    1. `typeof`：可以判断是是否是一个对象，或者其它基础类型  
+    1. `typeof` 或者 `toString()`：可以判断是是否是一个对象，或者其它基础类型  
     2. `constructor`：可以用来判断内置对象的构造函数类型  
-    3. `object.prototype.toString.call()`：这种可以用来判断老祖宗是不是object
+    3. `Object.prototype.toString.call()`：这种可以用来判断老祖宗是不是object  
+
+#### 自定义对象类型判断  
+
+```js 
+function Person(name, age) {
+    // this = new Object()
+    this.name = name
+    this.age = age
+}
+
+function Dog(name, age) {
+    // this = new Object()
+    this.name = name
+    this.age = age
+}
+
+function Cat(name, age) {
+    // this = new Object()
+    this.name = name
+    this.age = age
+}
+
+let P = new Person('周杰伦', 18)
+let D = new Dog('司司', 18)
+let C = new Cat('老王', 8)  
+```  
+如上自定义的构造函数对象类型，如果用`typeof` 或者 `toString()`，`Object.prototype.toString.call()`来进行判断的话，会发现，得出的类型都是 `object`，无法得到真实类型。原因是，在创建构造函数时，系统内部自动帮你实行了这一步： 
+```js
+ this = new Object()
+```  
+所以如果要拿到真实类型，只能用`constructor`，会得到`Person`，`Dog`，`Cat`。
