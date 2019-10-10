@@ -1,3 +1,10 @@
+/*
+ * @Description: In User Settings Edit
+ * @Author: your name
+ * @Date: 2019-07-15 11:53:16
+ * @LastEditTime: 2019-07-15 11:53:16
+ * @LastEditors: your name
+ */
 module.exports = [
     {
         title: '前端',
@@ -21,7 +28,8 @@ module.exports = [
     {
         title: '数据结构与算法',
         children: [
-            '/DataStructureAndAlgorithm/basic'
+            '/DataStructureAndAlgorithm/basic',
+            '/DataStructureAndAlgorithm/set'
         ]
     },
     {
