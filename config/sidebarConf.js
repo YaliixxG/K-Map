@@ -41,7 +41,9 @@ module.exports = [
         children: [
             '/debug/aboutTerminal',
             '/debug/aboutReact',
-            '/debug/aboutMac'
+            '/debug/aboutMac',
+            '/debug/aboutMock'
         ]
     }
 ];
+

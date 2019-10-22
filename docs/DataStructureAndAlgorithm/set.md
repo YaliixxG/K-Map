@@ -5,7 +5,7 @@ title: 集合
 <!--
  * @Description: 集合
  * @Date: 2019-10-10 10:09:49
- * @LastEditTime: 2019-10-10 11:09:34
+ * @LastEditTime: 2019-10-10 15:44:16
  -->
 
 # <font color="#32CD32">集合</font> 
@@ -27,12 +27,15 @@ title: 集合
 ```js
 function Set() {
     this.dataStore = [];
+    this.size = size; // 返回集合的长度
     this.add = add; // 添加集合元素
     this.remove = remove; // 删除集合元素
     this.show = show; // 展示集合元素
     this.contains = contains; // 检查一个成员是否属于该集合
     this.union = union; // 并集操作
     this.intersect = intersect; // 交集操作  
+    this.subset = subset; // 判断是否是待比较集合的子集
+    this.difference = difference; // 补集操作
 }
 
 // 添加方法：因为集合元素不能包含相同的元素，所以必须检测是否包含此元素，不包含则添加并返回true，否则返回false
@@ -90,6 +93,41 @@ function intersect(set) {
 
     for (let i = 0; i < this.dataStore.length; i++) {
         if (set.contains(this.dataStore[i])) {
+            tempSet.add(this.dataStore[i])
+        }
+    }
+    return tempSet
+}
+
+// 返回集合的长度  
+function size() {
+    return this.dataStore.length
+}
+
+// 判断是否是待比较集合的子集
+function subset(set) {
+
+    // 如果集合的长度比待比较集合的长度还要大，则肯定是不是待比较集合的子集，所以返回false
+    if (this.size() > set.size){
+        return false
+    }else {
+
+        // 对集合进行循环，看每一项是不是都在待比较集合中，如果有不在待比较集合中的元素，则这个集合就不是待比较集合的子集，所以返回false
+        this.dataStore.forEach(i => {
+            if (!set.contains(i)) {
+                return false
+            }
+        })
+    }
+    return true
+}
+
+// 补集：返回一个新集合，里面装的是在本集合里面，但是不属于待比较集合里面的元素
+function difference(set) {
+    let tempSet = new Set() 
+
+    for (let i = 0; i < this.dataStore.length; i++) {
+        if (!set.contains(this.dataStore[i])) {
             tempSet.add(this.dataStore[i])
         }
     }
