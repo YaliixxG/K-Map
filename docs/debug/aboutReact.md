@@ -184,7 +184,7 @@ this.setState(
 
   handleSelectedKeys = pathname => {
       const temp = pathname.split('/');
-      
+
       // 路径的长度小于2的话，则是代表现在是根路径，所以让其导航到首页
       const key = temp && temp.length < 2 ? 'home' : temp[1];
       this.setState({
@@ -192,3 +192,15 @@ this.setState(
       });
   };
 ```
+
+#### 11. 使用`Ant-Design`框架时，用到 Input 输入框，但是不想利用`value`值来清空时，有没有更简便的方法？
+
+答：虽然不是好方法，但是的确是简便的，给需要清空的 Input 组件设置 id 值，然后进行清空。
+
+```js
+document.getElementById('searchCategory').value = '';
+```
+
+#### 12. 无状态组件是否不能重新更改状态，不能刷新页面？
+
+答：数据驱动视图进行变化，你改变了数据，视图就会刷新。
