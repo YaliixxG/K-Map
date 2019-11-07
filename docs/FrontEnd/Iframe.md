@@ -12,12 +12,12 @@ title: 关于Iframe
 import React, { PureComponent } from 'react';
 import ReactDOM from 'react-dom';
 import { connect } from 'dva';
-import styles from './resourceDetailLink.less';
+import styles from './abc.less';
 
 @connect(state => ({
     user: state.user
 }))
-export default class ResourceDetailLink extends PureComponent {
+export default class Abc extends PureComponent {
     constructor() {
         super();
         this.state = {
