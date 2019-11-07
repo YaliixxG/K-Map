@@ -22,7 +22,8 @@ module.exports = [
             '/FrontEnd/arrow',
             '/FrontEnd/sheetJS',
             '/FrontEnd/Context',
-            '/FrontEnd/Key'
+            '/FrontEnd/Key',
+            '/FrontEnd/Iframe'
         ]
     },
     {
