@@ -30,7 +30,8 @@ module.exports = [
         title: '数据结构与算法',
         children: [
             '/DataStructureAndAlgorithm/basic',
-            '/DataStructureAndAlgorithm/set'
+            '/DataStructureAndAlgorithm/set',
+            '/DataStructureAndAlgorithm/tree'
         ]
     },
     {
