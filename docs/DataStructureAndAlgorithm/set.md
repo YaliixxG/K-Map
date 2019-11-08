@@ -122,7 +122,7 @@ function subset(set) {
     return true
 }
 
-// 补集：返回一个新集合，里面装的是在本集合里面，但是不属于待比较集合里面的元素
+// 补集,差集：返回一个新集合，里面装的是在本集合里面，但是不属于待比较集合里面的元素
 function difference(set) {
     let tempSet = new Set() 
 
