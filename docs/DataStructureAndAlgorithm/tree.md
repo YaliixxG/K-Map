@@ -16,8 +16,9 @@ title: 树
 ### 二叉树，二叉搜索树
 
 -   二叉树：二叉树中的节点最多只能有两个子节点：一个是左侧子节点，另一个是右侧子节点
--   二叉搜索树：它只允许你在左侧节点存储（比父节点）小的值，在右侧节点存储（比父节点）大（或者等于）的值。
-    ![二叉搜索树BST](../.vuepress/public/imgs/BST.jpg)
+-   二叉搜索树：它只允许你在左侧节点存储（比父节点）小的值，在右侧节点存储（比父节点）大（或者等于）的值。  
+
+![二叉搜索树BST](../.vuepress/public/imgs/BST.jpg)
 
 ### 创建 BinarySearchTree 类 （二叉搜索树）
 
@@ -37,7 +38,8 @@ function BinarySearchTree() {
 }
 ```
 
-### 插入操作，向树中插入一个键
+### 插入操作，向树中插入一个键  
+
 ```js
 // 向树中插入一个键
 this.insert = function(key) {
@@ -72,4 +74,24 @@ this.insert = function(key) {
 // test
 var tree = new BinarySearchTree();
 tree.insert(11);
-```
+```  
+
+### 树的遍历  
+> 遍历一棵树是指访问树的每个节点并对他们进行某种操作的过程
+访问树的所有节点有三种方式：中序、先序、后序。  
+
+### 中序遍历  
+中序遍历是一种以上行顺序访问BTS所有节点的遍历方式，也就是从最小到最大的顺序访问所有节点。
+
+![中序遍历](../.vuepress/public/imgs/LDR.jpg) 
+
+### 先序遍历
+先序遍历是先遍历节点本身，然后再访问它的左侧子节点，最后是右侧子节点。
+
+![先序遍历](../.vuepress/public/imgs/Pre-order.jpg) 
+
+
+### 后序遍历
+后序遍历是先访问左侧子节点，然后是右侧子节点，最后是父节点本身。
+
+![后序遍历](../.vuepress/public/imgs/LRD.jpg) 
