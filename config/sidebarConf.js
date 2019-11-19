@@ -23,7 +23,8 @@ module.exports = [
             '/FrontEnd/sheetJS',
             '/FrontEnd/Context',
             '/FrontEnd/Key',
-            '/FrontEnd/Iframe'
+            '/FrontEnd/Iframe',
+            '/FrontEnd/Img'
         ]
     },
     {
