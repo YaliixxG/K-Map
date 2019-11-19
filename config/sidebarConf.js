@@ -24,7 +24,8 @@ module.exports = [
             '/FrontEnd/Context',
             '/FrontEnd/Key',
             '/FrontEnd/Iframe',
-            '/FrontEnd/Img'
+            '/FrontEnd/Img',
+            '/FrontEnd/optimizeReact'
         ]
     },
     {
