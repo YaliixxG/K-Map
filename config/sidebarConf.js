@@ -25,7 +25,8 @@ module.exports = [
             '/FrontEnd/Key',
             '/FrontEnd/Iframe',
             '/FrontEnd/Img',
-            '/FrontEnd/optimizeReact'
+            '/FrontEnd/optimizeReact',
+            '/FrontEnd/commit'
         ]
     },
     {
