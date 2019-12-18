@@ -40,7 +40,7 @@ module.exports = [
     },
     {
         title: '基础',
-        children: ['/Basic/OS','/Basic/Net']
+        children: ['/Basic/OS', '/Basic/Net', '/Basic/Git']
     },
     {
         title: 'DEBUG',
