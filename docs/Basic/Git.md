@@ -28,7 +28,7 @@ To https://gitlab10.aaaaaaaa.com/库命/项目.git
 ```docs
     $ git reset --hard d21254d1a57fc935a03ab4eab41b04f04c8edaaf
 ```  
-3. 强制远程分支回退到本地版本  
+#### 强制远程分支回退到本地版本  
 
 ```docs 
     $ git push -f
