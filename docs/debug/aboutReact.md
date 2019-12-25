@@ -219,4 +219,65 @@ document.getElementById('searchCategory').value = '';
 
 #### 16. `Invariant Violation: Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: undefined ...You likely forgot to export your component from the file it's defined in...`
 
-答：问题可能出在 `export` 或者 `export default`的用法搞混了，引入的 `{}` 要检查是否要加；另外还有可能是你的代码中间有一个元素是无效的，一个字符串或者一个类或函数命名出错。例如我这次就是解构写法写错了，导致了这个问题。
+答：问题可能出在 `export` 或者 `export default`的用法搞混了，引入的 `{}` 要检查是否要加；另外还有可能是你的代码中间有一个元素是无效的，一个字符串或者一个类或函数命名出错。例如我这次就是解构写法写错了，导致了这个问题。  
+
+#### 17. 用`antd`框架中`upload`上传组件时，如何在`beforeUpload`中异步获取action，并同步修改执行？  
+答：使用 `async`和`await`来解决这个问题。  
+```js
+import React, { Component } from 'react';
+import { Upload, Button, Icon } from 'dtd';
+
+export default class index extends Component {
+    state = {
+        actionDo: 'https://www.mocky.io/v2/5cc8019d300000980a055e76',
+        url: 'aaa'
+    };
+
+    setTime = () => {
+        return new Promise(resolve => {
+            setTimeout(() => {
+                this.setState(
+                    {
+                        actionDo: '改变之后的actionDo'
+                    },
+                    () => {
+                        console.log('演示器actionDo', this.state.actionDo);
+                        resolve(true);
+                    }
+                );
+            }, 5000);
+        });
+    };
+
+    beforeUpload = async () => {
+        console.log('上传之前', this.state.actionDo, this.state.url);
+        await this.setTime();
+        console.log('最后', this.state.actionDo);
+    };
+
+    render() {
+        return (
+            <div>
+                <Upload
+                    name="file"
+                    action={this.state.actionDo}
+                    beforeUpload={this.beforeUpload}
+                >
+                    <Button>
+                        <Icon type="upload" /> Click to Upload
+                    </Button>
+                </Upload>
+                ,
+            </div>
+        );
+    }
+}
+
+```  
+
+操作结果如下：  
+
+![示例](../.vuepress/public/imgs/upload.png)  
+
+action改变：  
+![示例](../.vuepress/public/imgs/action.png)
