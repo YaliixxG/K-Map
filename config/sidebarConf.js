@@ -27,7 +27,8 @@ module.exports = [
             '/FrontEnd/Img',
             '/FrontEnd/optimizeReact',
             '/FrontEnd/commit',
-            '/FrontEnd/websocket'
+            '/FrontEnd/websocket',
+            '/FrontEnd/browsersCompatibility'
         ]
     },
     {
