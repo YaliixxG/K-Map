@@ -49,7 +49,8 @@ module.exports = [
             '/debug/aboutTerminal',
             '/debug/aboutReact',
             '/debug/aboutMac',
-            '/debug/aboutMock'
+            '/debug/aboutMock',
+            '/debug/aboutTypeScript'
         ]
     }
 ];
