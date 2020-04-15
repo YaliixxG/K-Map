@@ -52,6 +52,10 @@ module.exports = [
             '/debug/aboutMock',
             '/debug/aboutTypeScript'
         ]
-    }
+    },
+    {
+        title: '阅读',
+        children: ['/Read/mathematicalBeauty']
+    },
 ];
 
