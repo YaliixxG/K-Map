@@ -2,7 +2,7 @@
 title: 数学之美
 ---
 
-# <font color="#FF00FF">数学之美</font>
+# <font color="#0000CD">数学之美</font>
 
 ### 数学之美  
 
