@@ -9,6 +9,7 @@ module.exports = [
     {
         title: '前端',
         children: [
+            '/FrontEnd/memoryLeak',
             '/FrontEnd/TailCall',
             '/FrontEnd/callStack',
             '/FrontEnd/arcgis',
@@ -30,7 +31,7 @@ module.exports = [
             '/FrontEnd/optimizeReact',
             '/FrontEnd/commit',
             '/FrontEnd/websocket',
-            '/FrontEnd/browsersCompatibility'
+            '/FrontEnd/browsersCompatibility',
         ]
     },
     {
