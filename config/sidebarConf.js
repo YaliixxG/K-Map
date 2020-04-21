@@ -39,7 +39,8 @@ module.exports = [
         children: [
             '/DataStructureAndAlgorithm/basic',
             '/DataStructureAndAlgorithm/set',
-            '/DataStructureAndAlgorithm/tree'
+            '/DataStructureAndAlgorithm/tree',
+            '/DataStructureAndAlgorithm/SelectionSort'
         ]
     },
     {
