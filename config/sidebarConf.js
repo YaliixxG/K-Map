@@ -41,7 +41,8 @@ module.exports = [
             '/DataStructureAndAlgorithm/set',
             '/DataStructureAndAlgorithm/tree',
             '/DataStructureAndAlgorithm/SelectionSort',
-            '/DataStructureAndAlgorithm/Quicksort'
+            '/DataStructureAndAlgorithm/Quicksort',
+            '/DataStructureAndAlgorithm/HashTable'
         ]
     },
     {
