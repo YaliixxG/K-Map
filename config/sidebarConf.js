@@ -40,9 +40,9 @@ module.exports = [
             '/DataStructureAndAlgorithm/basic',
             '/DataStructureAndAlgorithm/set',
             '/DataStructureAndAlgorithm/tree',
+            '/DataStructureAndAlgorithm/HashTable',
             '/DataStructureAndAlgorithm/SelectionSort',
             '/DataStructureAndAlgorithm/Quicksort',
-            '/DataStructureAndAlgorithm/HashTable'
         ]
     },
     {
