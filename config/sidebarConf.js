@@ -43,6 +43,7 @@ module.exports = [
             '/DataStructureAndAlgorithm/HashTable',
             '/DataStructureAndAlgorithm/SelectionSort',
             '/DataStructureAndAlgorithm/Quicksort',
+            '/DataStructureAndAlgorithm/BFS',
         ]
     },
     {
