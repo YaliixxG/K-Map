@@ -35,15 +35,20 @@ module.exports = [
         ]
     },
     {
-        title: '数据结构与算法',
+        title: '数据结构',
         children: [
-            '/DataStructureAndAlgorithm/basic',
-            '/DataStructureAndAlgorithm/set',
-            '/DataStructureAndAlgorithm/tree',
-            '/DataStructureAndAlgorithm/HashTable',
-            '/DataStructureAndAlgorithm/SelectionSort',
-            '/DataStructureAndAlgorithm/Quicksort',
-            '/DataStructureAndAlgorithm/BFS',
+            '/DataStructure/basic',
+            '/DataStructure/set',
+            '/DataStructure/tree',
+            '/DataStructure/HashTable',
+        ]
+    },
+    {
+        title: '算法',
+        children: [
+            '/Algorithm/SelectionSort',
+            '/Algorithm/Quicksort',
+            '/Algorithm/BFS',
         ]
     },
     {

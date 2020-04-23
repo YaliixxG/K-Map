@@ -8,11 +8,13 @@ features:
   details: 用于前端平常知识点的积累，慢慢梳理。
 - title: 基础
   details: 计算机的基础部分，从底层出发。
-- title: 数据结构与算法
-  details: 数据结构 + 算法。
 - title: debug
   details: 只要用于收集平常出现的各种BUG以及解决方法。
+- title: 数据结构
+  details: 数据结构
+- title: 算法
+  details: 算法
 - title: Read
-  details: 阅读。
+  details: 阅读
 ---
 
