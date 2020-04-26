@@ -49,6 +49,7 @@ module.exports = [
             '/Algorithm/SelectionSort',
             '/Algorithm/Quicksort',
             '/Algorithm/BFS',
+            '/Algorithm/Greedy',
         ]
     },
     {
