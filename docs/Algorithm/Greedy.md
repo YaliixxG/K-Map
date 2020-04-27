@@ -38,4 +38,4 @@ title: 贪心算法
 
 数组为`[2, 3, 1, 1, 4]`
 
-![贪心算法](../.vuepress/public/imgs/greedy2.JPG) 
+![贪心算法2](../.vuepress/public/imgs/greedy2.png) 
