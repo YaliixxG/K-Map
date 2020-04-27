@@ -33,7 +33,7 @@ title: 贪心算法
 
 数组为`[3, 2, 1, 0, 5]` ，则永远到不了最后一个位置。  
 
-![贪心算法](../.vuepress/public/imgs/greedy.jpeg)   
+![贪心算法](../.vuepress/public/imgs/greedy.png)   
 
 
 数组为`[2, 3, 1, 1, 4]`
