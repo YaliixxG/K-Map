@@ -52,3 +52,18 @@ function go(e) {
 }
 window.addEventListener('resize', throttle(go));
 ```
+
+也可以直接用定时器的引用来做开关
+
+```js  
+    function throttle(fn, wait) {
+    let time
+     return function() {
+        if(!time) {
+           time = setTimeout(() => {
+           time = null
+           fn.apply(this, arguments)
+           }, wait)
+        }
+    }
+```
