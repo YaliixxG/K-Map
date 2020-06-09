@@ -62,6 +62,7 @@ module.exports = [
         children: [
             '/debug/aboutTerminal',
             '/debug/aboutReact',
+            '/debug/aboutVue',
             '/debug/aboutMac',
             '/debug/aboutMock',
             '/debug/aboutTypeScript'
