@@ -15,4 +15,43 @@ title: Vue
 
 #### 2. 引入子组件时发生栈溢出？  
 
-答：检查子组件的name命名是否与父组件重名，如果重名会发生循环渲染栈溢出的情况。
+答：检查子组件的name命名是否与父组件重名，如果重名会发生循环渲染栈溢出的情况。  
+
+#### 3. Vue引入图片 img 地址无效？  
+
+答：  
+这样写是有效的写法，可以正确的引入地址写在模板里面，webpack会将其正确的解析为地址 
+```js
+<template>
+    <img src="../jay.png" />
+</template>
+```  
+写在Vue实例里面是无效的，webpack不会将这个地址正确的解析，只会将其解析成字符串  
+```js
+<template>
+    <img src="logoSrc" />
+</template>
+<script>
+export default {
+    data () {
+    return {
+      logoSrc: './../assets/logo.png'
+    }
+  }
+}
+</script>
+```   
+最好的方法是这样写，用require引入则可以得到正确的图片地址   
+```js
+<script>
+export default {
+    data () {
+    return {
+      logoSrc: {
+          src:require('./../assets/logo.png')
+      }
+    }
+  }
+}
+</script>
+``` 
