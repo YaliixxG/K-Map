@@ -54,4 +54,17 @@ export default {
   }
 }
 </script>
-``` 
+```   
+
+#### 4. Vue引入常量不能直接放入模板使用？  
+
+答：`Vue`引入常量`imgUrl`直接放入`template`中用会报错，必须在实例`data`中进行二次赋值才能正常使用  
+
+```js
+import { imgUrl } from ’utils/constant.js’   
+data() {
+        return {
+            imgUrl
+        }
+    },
+```
