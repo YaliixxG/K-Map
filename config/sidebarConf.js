@@ -50,7 +50,8 @@ module.exports = [
             '/Algorithm/Quicksort',
             '/Algorithm/BFS',
             '/Algorithm/Greedy',
-            '/Algorithm/Dynamic',          
+            '/Algorithm/Dynamic', 
+            '/Algorithm/List',          
         ]
     },
     {
