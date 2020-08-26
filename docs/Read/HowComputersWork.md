@@ -76,4 +76,22 @@ class Person {
 
 
 ![数据库系统的形式](../.vuepress/public/imgs/xitong1.png)  
-![数据库系统的形式](../.vuepress/public/imgs/xitong2.png)
+![数据库系统的形式](../.vuepress/public/imgs/xitong2.png)  
+
+### 通过七个简单的实验理解TCP/IP网络  
+* LAN 和 WAN 是什么？   
+    答：LAN是Local Area Network(局域网)的缩略语。通常把在一栋建筑物内或是一间办公室里的那种小规模网络称作 LAN。与此相对，把互联网那样的大规模网络称作 WAN(Wide Area Network，广域网)。  
+* TCP/IP 是什么的缩略语?  
+    答： CP/IP 是 Transmission Control Protocol/Internet Protocol(传输控制协议和网际协议)的缩略语。TCP/IP 协议族是互联网所使用的一套标准协议。TCP/IP 这个名字意味着同时使用了 TCP 协议和 IP 协议。  
+* MAC 地址是什么?  
+    答： MAC（Media Access Control)地址的编号来指定电信号的接收者，就是能够标识网卡的编号。几乎所有的网卡都会在上市前被分配一个不可变更的 MAC 地址。  
+    ```js  
+    // Windows，其中物理地址即为MAC地址
+    $ ipconfig /all
+    ```   
+
+### 试着加密数据吧  
+* 解密：虽然存在各种各样的加密技术，但是其中的基本手段无外乎还是 字符编码的变换，即将构成明文的每个字符的编码分别变换成其他的数值。通过反转这种变换过程，加密后的文本数据就可以还原。通常 把密文还原成明文的过程(即解读密码的过程)称为“解密”。 
+具体请看另外一篇：  
+
+

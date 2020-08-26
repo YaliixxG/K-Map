@@ -32,6 +32,7 @@ module.exports = [
             '/FrontEnd/commit',
             '/FrontEnd/websocket',
             '/FrontEnd/browsersCompatibility',
+            '/FrontEnd/Inheritance',
         ]
     },
     {
