@@ -42,6 +42,10 @@ Animal.prototype.eat = function() {
     console.log('Animal => eat', this.name, this.age)
 }
 
+Animal.prototype.run = function() {
+    console.log('Animal => run', this.name, this.age)
+}
+
 function Person(job, name, age) {
     // 构造函数继承：借助父类构造函数，将父类构造函数中的属性继承过来，记住一定要写在最上面，否则下方的子类属性`job`，将会在修改时被覆盖
     Animal.call(this, name, age)
