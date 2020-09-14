@@ -27,7 +27,11 @@ title: 继承
 画出数组对象完整原型链：  
 ![ArrayPrototype](../.vuepress/public/imgs/ArrayPrototype.png) 
 
-### 寄生组合式继承 = 原型链继承 + 构造函数继承 +  寄生式继承  
+### 寄生组合式继承 = 原型链继承 + 构造函数继承 +  寄生式继承    
+
+按照下图的要求，手写继承：  
+
+![parasitic](../.vuepress/public/imgs/parasitic.jpg) 
 ```js
 function Animal(name, age) {
     this.name = name
