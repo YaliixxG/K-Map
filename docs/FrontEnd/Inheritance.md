@@ -90,4 +90,68 @@ const stu = new Student('人类', '上班', '张三', '17')
 stu.eat()
 stu.jump()
 stu.study()
+```  
+
+### ES6 类的继承  
+```js
+class A {
+    // 类似对象中的构造函数
+    constructor(name, age) {
+        this.name = name  
+        this.age = age
+    }
+
+    /** 
+    静态写法 :
+    1. 有 static关键字，表明该方法是一个静态方法
+    2. 需要通过类名来调用，而不是在实例 ( this )上调用
+    3. 如果使用this调用，或者在该方法中使用this。均会出现异常
+    4. 静态方法可以和非静态方法重名 ( 不推荐这样 )
+    5. 父类的静态方法，可以被子类继承
+    */
+
+    // 静态属性()
+    static hello = "你好";
+
+    // 静态方法
+    static say() {
+        console.log('say')
+    }
+
+    // 动态方法
+    getName() {
+        console.log('name', this.name)
+    }
+}
+
+class B extends A {
+    constructor(job, name, age) {
+
+        // 类似于 A.call(this, name, age), 这里是拿到父类的 this
+        super(name, age)
+        this.job = job
+    }
+
+    getJob() {
+        console.log('job', this.job)
+    }
+
+    getAge() {
+        console.log('age', this.age)
+    }
+
+    getNameFarther() {
+        console.log('name', this.name)
+    }
+}
+
+const b = new B('医生', '天堂', '30')
+b.getName()
+b.getJob()
+b.getAge()
+b.getNameFarther()
+A.say()
+B.say()
+console.log(A.hello, B.hello)
+b.say() // 报错，静态方法不能被实例调用，只能被类调用
 ```
