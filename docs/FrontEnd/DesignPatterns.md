@@ -59,18 +59,6 @@ function Solo(name, age) {
     this.name = name;
     this.age = age;
 }
-
-let solo1 = new Solo('李白', '18');
-let solo2 = new Solo('杜甫', '18');
-let solo3 = new Solo('白居易', '18');
-let solo4 = new Solo('孟浩然', '18');
-
-console.log(solo1 === solo2); // true
-console.log(solo1 === solo3); // true
-console.log(solo1 === solo4); // true
-console.log(solo2 === solo3); // true
-
-console.log(solo3, solo2); // Solo { name: '李白', age: '18' } Solo { name: '李白', age: '18' }
 ```
 
 <strong>缺点：</strong>使用一个全局变量来保存单例对象，该全局变量在整个作用域中都可以被访问或者被修改，可能会轻易的被覆盖或者是修改。修改之后，创建出来的实例对象则不是之前那个单例对象了。
@@ -92,18 +80,6 @@ console.log(solo3, solo2); // Solo { name: '李白', age: '18' } Solo { name: '�
     }
     w.Solo = Solo;
 })(window);
-
-let solo1 = new Solo('李白', '18');
-let solo2 = new Solo('杜甫', '18');
-let solo3 = new Solo('白居易', '18');
-let solo4 = new Solo('孟浩然', '18');
-
-console.log(solo1 === solo2); // true
-console.log(solo1 === solo3); // true
-console.log(solo1 === solo4); // true
-console.log(solo2 === solo3); // true
-
-console.log(solo3, solo2); // Solo { name: '李白', age: '18' } Solo { name: '李白', age: '18' }
 ```  
 
 三、使用闭包-惰性函数实现单例模式（惰性函数只执行一次）    
@@ -130,24 +106,4 @@ function Solo(name, age) {
     init = new Solo()  
     init.constructor = Solo
 }
-
-let solo1 = new Solo('李白', '18');
-let solo2 = new Solo('杜甫', '18');
-
-Solo.prototype.run = function() {
-    console.log('跑')
-}
-
-let solo3 = new Solo('白居易', '18');
-let solo4 = new Solo('孟浩然', '18');  
-
-solo3.run()
-solo1.run()
-
-console.log(solo1 === solo2); // true
-console.log(solo1 === solo3); // true
-console.log(solo1 === solo4); // true
-console.log(solo2 === solo3); // true
-
-console.log(solo3, solo2); // Solo { name: '李白', age: '18' } Solo { name: '李白', age: '18' }
 ```
