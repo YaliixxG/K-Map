@@ -73,7 +73,7 @@ module.exports = [
     },
     {
         title: '阅读',
-        children: ['/Read/mathematicalBeauty', '/Read/HowComputersWork']
+        children: ['/Read/mathematicalBeauty', '/Read/HowComputersWork', '/Read/Vue']
     },
 ];
 
