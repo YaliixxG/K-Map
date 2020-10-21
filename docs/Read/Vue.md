@@ -67,5 +67,9 @@ computed: {
 * <strong>beforeUpdate</strong>：在数据更新之前时调用。 
 * <strong>updated</strong>：在数据更新之后时调用。  
 * <strong>beforeDestroy</strong>：实例销毁之前调用。此时，实例仍然是可用的。  
-* <strong>destroyed</strong>：vue实例销毁后调用。调用后，vue实例指示的所有东西都会解绑，所有的时间监听器会被卸载移除，所有的子实例也会被销毁。
+* <strong>destroyed</strong>：vue实例销毁后调用。调用后，vue实例指示的所有东西都会解绑，所有的时间监听器会被卸载移除，所有的子实例也会被销毁。  
+
+### 组件  
+* 命名：可以为 `my-component-name` 也可以为 `MyComponentName`  
+* 模板内插入组件时：用`my-component-name`命名的，必须为`<my-component-name />`；用`MyComponentName`命名的，则`<my-component-name />`或者`<MyComponentName />` 都可以
 
