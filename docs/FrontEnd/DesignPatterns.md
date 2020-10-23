@@ -21,7 +21,7 @@ title: JS设计模式
 -   命令模式
 -   模板模式
 -   策略模式
--   观察者模式
+-   观察者模式（发布订阅）
 -   命名空间模式
 
 ### 目的
@@ -106,4 +106,94 @@ function Solo(name, age) {
     init = new Solo()  
     init.constructor = Solo
 }
+```  
+### 观察者（发布订阅）模式  
+
+有人发布 => 有人订阅 => 一旦有人发布，订阅者就可以收到消息 => 主动权在发布者手中  
+
+1. 建立发布者对象`lk`  
+2. 添加放置订阅者对象的总对象`targetActionsType`，例如：
+```js
+targetActionsType = {
+    click: [
+        {
+            handleClick: function() {
+                console.log('handleClick事件');
+            }
+        },
+        {
+            getMsg: function() {
+                console.log('getMsg事件');
+            }
+        }
+    ],
+    hover: [
+        {
+            handleHover: function() {
+                console.log('handleHover事件');
+            }
+        },
+        {
+            changeColor: function() {
+                console.log('changeColor事件');
+            }
+        }
+    ]
+};
+```
+3. 添加订阅者方法`addUser`  
+4. 添加发布方法`publish`  
+
+```js
+let lk = {
+    // 用来放不同类型的订阅事件 key值为类型，value值为储存了{target: action}对象的订阅对象数组
+    targetActionsType: {},
+
+    /**
+     * method 添加订阅对象
+     * param {string} type 订阅对象的大类（例如Click事件，Hover事件等等）
+     * param {string} target 大类中小类的订阅对象的key值（比如你的事件命名 handleClick）
+     * param {function} action 大类中小类的订阅对象的value值（函数，具体的函数操作）
+     */
+    addUser: function(type, target, action) {
+        if (typeof this.targetActionsType[type] === 'undefined') {
+            this.targetActionsType[type] = [];
+        }
+        let obj = {
+            target,
+            action
+        };
+        this.targetActionsType[type].push(obj);
+    },
+
+    // 发布动作：根据你传递的type，从订阅对象大类targetActionsType取出订阅数组，再循环进行回调操作
+    publish: function(type) {
+        let targetActions = this.targetActionsType[type];
+        for (let i = 0; i < targetActions.length; i++) {
+            let { target, action } = targetActions[i];
+            action.call(target);
+        }
+    }
+};
+
+const a = { name: '张三' },
+    b = { name: '李四' };
+
+lk.addUser('click', a, function() {
+    console.log(`${this.name}订阅了点击事件`);
+});
+lk.addUser('click', b, function() {
+    console.log(`${this.name}订阅了点击事件`);
+});
+lk.addUser('hover', b, function() {
+    console.log(`${this.name}订阅了hover事件`);
+});
+
+lk.publish('click');
+lk.publish('hover');
+
+// 张三订阅了点击事件
+// 李四订阅了点击事件
+// 李四订阅了hover事件
+
 ```
