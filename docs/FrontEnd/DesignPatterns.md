@@ -196,4 +196,51 @@ lk.publish('hover');
 // 李四订阅了点击事件
 // 李四订阅了hover事件
 
+```  
+### 命名空间模式  
+* 写法：把所有的东西都写在一个对象里面（变量，方法）  
+* 命名：一般是项目的名称或简称，要求所有的字符都大写  
+
+```js  
+window.LK = {
+    height: 18,  
+    width: 1000,
+    logMsg: function() {
+        console.log('打印巴拉巴拉')
+    }
+}
+```  
+
+### 策略模式  
+
+#### 定义一系列的策略，把它们一个个封装成函数，也可以统一封装进一个对象；然后再定义一方法，该方法可根据参数自动选择执行对应的策略  
+
+举例：小球的运动，从一个点运动到另一个点，可以有很多种策略，比如快速，正常速度，慢速。  
+```js  
+let Celue = {
+    slow: function (distance) {
+        console.log(`慢速，耗时${distance * 2}小时`)
+    },
+    normal: function (distance) {
+        console.log(`慢速，耗时${distance}小时`)
+    },
+    fast: function (distance) {
+        console.log(`快速，耗时${distance / 2}小时`)
+    }
+}
+
+function Ball(from, to) {
+    this.from = from
+    this.to = to
+}
+
+Ball.prototype.run = function (fn) {
+    fn(this.to - this.from)
+}
+
+let ball = new Ball(0, 20)
+
+ball.run(Celue.slow) // 慢速，耗时40小时
+ball.run(Celue.normal) // 慢速，耗时20小时
+ball.run(Celue.fast) // 慢速，耗时10小时
 ```
