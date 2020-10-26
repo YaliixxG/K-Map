@@ -29,7 +29,6 @@ module.exports = [
             '/FrontEnd/Iframe',
             '/FrontEnd/Img',
             '/FrontEnd/optimizeReact',
-            '/FrontEnd/commit',
             '/FrontEnd/websocket',
             '/FrontEnd/browsersCompatibility',
             '/FrontEnd/Inheritance',
@@ -74,6 +73,10 @@ module.exports = [
     {
         title: '阅读',
         children: ['/Read/mathematicalBeauty', '/Read/HowComputersWork', '/Read/Vue']
+    },
+    {
+        title: '代码',
+        children: ['/Code/commit']
     },
 ];
 
