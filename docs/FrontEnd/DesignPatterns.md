@@ -213,7 +213,7 @@ window.LK = {
 
 ### 策略模式  
 
-#### 定义一系列的策略，把它们一个个封装成函数，也可以统一封装进一个对象；然后再定义一方法，该方法可根据参数自动选择执行对应的策略  
+定义一系列的策略，把它们一个个封装成函数，也可以统一封装进一个对象；然后再定义一方法，该方法可根据参数自动选择执行对应的策略  
 
 举例：小球的运动，从一个点运动到另一个点，可以有很多种策略，比如快速，正常速度，慢速。  
 ```js  
@@ -243,4 +243,55 @@ let ball = new Ball(0, 20)
 ball.run(Celue.slow) // 慢速，耗时40小时
 ball.run(Celue.normal) // 慢速，耗时20小时
 ball.run(Celue.fast) // 慢速，耗时10小时
+```  
+
+### 模板模式  
+很多事情的流程步骤都是一模一样的，只是部分细节不同，此时可以在父类型定义这个模板，封装这些固定的操作，子类型继承父类型后，重写部分方法；  
+
+举例：冲果汁  
+```js
+// 冲果汁有几个步骤：烧水，加入材料，搅拌  
+// 其中烧水，搅拌是固定操作，但是放入材料，可以放入苹果做苹果汁，放入橙子做橙汁  
+
+// 父类型
+function Juicy() {} 
+
+// 制作方法
+Juicy.prototype.make = function() {
+    // 1、烧水
+    this.water()
+    // 2、放入材料 
+    this.cailiao() 
+    // 3、搅拌 
+    this.mix() 
+}
+
+Juicy.prototype.water = function() {
+    console.log('烧水')
+}
+Juicy.prototype.cailiao = function() {
+    // 此部分由子类型重写，所以暂时先抛出异常  
+    throw new Error('此部分由子类型重写，所以暂时先抛出异常')
+}
+Juicy.prototype.mix = function() {
+    console.log('搅拌')
+}  
+
+// 子类型
+function Apple() {}  
+
+// 先继承父类型 
+Apple.prototype = new Juicy() 
+
+// 重写材料方法  
+Apple.prototype.cailiao = function() {
+    console.log('放入苹果')
+}
+
+let apple = new Apple()
+apple.make()
+
+// 烧水
+// 放入苹果
+// 搅拌
 ```
