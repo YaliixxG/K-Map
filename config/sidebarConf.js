@@ -76,7 +76,7 @@ module.exports = [
     },
     {
         title: '代码',
-        children: ['/Code/commit']
+        children: ['/Code/commit', '/Code/codeQuality']
     },
 ];
 
