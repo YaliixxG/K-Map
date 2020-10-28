@@ -65,7 +65,28 @@ function Vue() {
 }
 ```
 
-### 变量权限
+### 健壮性 - 易错代码
+
+对象属性不存在的情况，注意要先判断对象的存在后，在进行属性的获取。现在可以用`?.`来进行操作。
+
+```js
+let obj = {
+    type: [
+        {
+            name: '张三'
+        }
+    ]
+};
+
+let name = obj.type[0].name; // 容易报错
+let name = obj?.type[0]?.name;
+```
+
+-   `?.` - 可选链运算符，检查每个级别，如果碰到的是 `undefined` 或 `null` 属性，直接返回 undefined，不会继续往下检查
+-   `??` - 空值合并运算符，仅在 左侧 是 `null` 或 `undefined` 时，使用右侧的值
+-   `??=` - 逻辑空赋值运算符 (x ??= y) 仅在 x 是 `null` 或 `undefined` 时对其赋值
+
+### 健壮性 - 变量权限
 
 有一些变量，是不想被外界更改的，例如在`vue`中的`this.$router`，你在代码中将其置成空对象，但是却不起作用，因为 vue 源码中给这种关键的变量设置了权限，不允许外部进行更改。  
 `Object.defineProperty(obj, prop, descriptor)`  
