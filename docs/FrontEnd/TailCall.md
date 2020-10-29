@@ -51,6 +51,7 @@ function f(x) {
     let a = 1;
     let b = 2;
     return g(a + b) 
+}
 f()  
 
 // 等同于  

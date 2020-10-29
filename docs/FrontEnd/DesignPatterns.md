@@ -17,6 +17,7 @@ title: JS设计模式
 ### 常用的设计模式
 
 -   工厂设计模式
+-   建造者模式
 -   单例设计模式
 -   命令模式
 -   模板模式
@@ -33,6 +34,11 @@ title: JS设计模式
     ......
 
 ### 工场设计模式
+
+需要大量创建对象
+
+### 建造者模式  
+精细化组合对象，先将其功能模块写出来，最后进行组装。只需少量创建对象。
 
 ### 单例设计模式
 
@@ -80,11 +86,9 @@ function Solo(name, age) {
     }
     w.Solo = Solo;
 })(window);
-```  
+```
 
-三、使用闭包-惰性函数实现单例模式（惰性函数只执行一次）    
-
-
+三、使用闭包-惰性函数实现单例模式（惰性函数只执行一次）
 
 ```js
 function Solo(name, age) {
@@ -92,7 +96,7 @@ function Solo(name, age) {
     let init = this;
 
     // 保存构造函数的原型对象指针
-    let oldPrototype = Solo.prototype
+    let oldPrototype = Solo.prototype;
     this.name = name;
     this.age = age;
 
@@ -102,17 +106,19 @@ function Solo(name, age) {
     };
 
     // 此时的 Solo已经上面赋值过的 Solo了
-    Solo.prototype = oldPrototype  
-    init = new Solo()  
-    init.constructor = Solo
+    Solo.prototype = oldPrototype;
+    init = new Solo();
+    init.constructor = Solo;
 }
-```  
-### 观察者（发布订阅）模式  
+```
 
-有人发布 => 有人订阅 => 一旦有人发布，订阅者就可以收到消息 => 主动权在发布者手中  
+### 观察者（发布订阅）模式
 
-1. 建立发布者对象`lk`  
+有人发布 => 有人订阅 => 一旦有人发布，订阅者就可以收到消息 => 主动权在发布者手中
+
+1. 建立发布者对象`lk`
 2. 添加放置订阅者对象的总对象`targetActionsType`，例如：
+
 ```js
 targetActionsType = {
     click: [
@@ -141,8 +147,9 @@ targetActionsType = {
     ]
 };
 ```
-3. 添加订阅者方法`addUser`  
-4. 添加发布方法`publish`  
+
+3. 添加订阅者方法`addUser`
+4. 添加发布方法`publish`
 
 ```js
 let lk = {
@@ -195,144 +202,149 @@ lk.publish('hover');
 // 张三订阅了点击事件
 // 李四订阅了点击事件
 // 李四订阅了hover事件
+```
 
-```  
-### 命名空间模式  
-* 写法：把所有的东西都写在一个对象里面（变量，方法）  
-* 命名：一般是项目的名称或简称，要求所有的字符都大写  
+### 命名空间模式
 
-```js  
+-   写法：把所有的东西都写在一个对象里面（变量，方法）
+-   命名：一般是项目的名称或简称，要求所有的字符都大写
+
+```js
 window.LK = {
-    height: 18,  
+    height: 18,
     width: 1000,
     logMsg: function() {
-        console.log('打印巴拉巴拉')
+        console.log('打印巴拉巴拉');
     }
-}
-```  
+};
+```
 
-### 策略模式  
+### 策略模式
 
-定义一系列的策略，把它们一个个封装成函数，也可以统一封装进一个对象；然后再定义一方法，该方法可根据参数自动选择执行对应的策略  
+定义一系列的策略，把它们一个个封装成函数，也可以统一封装进一个对象；然后再定义一方法，该方法可根据参数自动选择执行对应的策略
 
-举例：小球的运动，从一个点运动到另一个点，可以有很多种策略，比如快速，正常速度，慢速。  
-```js  
+举例：小球的运动，从一个点运动到另一个点，可以有很多种策略，比如快速，正常速度，慢速。
+
+```js
 let Celue = {
-    slow: function (distance) {
-        console.log(`慢速，耗时${distance * 2}小时`)
+    slow: function(distance) {
+        console.log(`慢速，耗时${distance * 2}小时`);
     },
-    normal: function (distance) {
-        console.log(`慢速，耗时${distance}小时`)
+    normal: function(distance) {
+        console.log(`慢速，耗时${distance}小时`);
     },
-    fast: function (distance) {
-        console.log(`快速，耗时${distance / 2}小时`)
+    fast: function(distance) {
+        console.log(`快速，耗时${distance / 2}小时`);
     }
-}
+};
 
 function Ball(from, to) {
-    this.from = from
-    this.to = to
+    this.from = from;
+    this.to = to;
 }
 
-Ball.prototype.run = function (fn) {
-    fn(this.to - this.from)
-}
+Ball.prototype.run = function(fn) {
+    fn(this.to - this.from);
+};
 
-let ball = new Ball(0, 20)
+let ball = new Ball(0, 20);
 
-ball.run(Celue.slow) // 慢速，耗时40小时
-ball.run(Celue.normal) // 慢速，耗时20小时
-ball.run(Celue.fast) // 慢速，耗时10小时
-```  
+ball.run(Celue.slow); // 慢速，耗时40小时
+ball.run(Celue.normal); // 慢速，耗时20小时
+ball.run(Celue.fast); // 慢速，耗时10小时
+```
 
-### 模板模式  
-很多事情的流程步骤都是一模一样的，只是部分细节不同，此时可以在父类型定义这个模板，封装这些固定的操作，子类型继承父类型后，重写部分方法；  
+### 模板模式
 
-举例：冲果汁  
+很多事情的流程步骤都是一模一样的，只是部分细节不同，此时可以在父类型定义这个模板，封装这些固定的操作，子类型继承父类型后，重写部分方法；
+
+举例：冲果汁
+
 ```js
-// 冲果汁有几个步骤：烧水，加入材料，搅拌  
-// 其中烧水，搅拌是固定操作，但是放入材料，可以放入苹果做苹果汁，放入橙子做橙汁  
+// 冲果汁有几个步骤：烧水，加入材料，搅拌
+// 其中烧水，搅拌是固定操作，但是放入材料，可以放入苹果做苹果汁，放入橙子做橙汁
 
 // 父类型
-function Juicy() {} 
+function Juicy() {}
 
 // 制作方法
 Juicy.prototype.make = function() {
     // 1、烧水
-    this.water()
-    // 2、放入材料 
-    this.cailiao() 
-    // 3、搅拌 
-    this.mix() 
-}
+    this.water();
+    // 2、放入材料
+    this.cailiao();
+    // 3、搅拌
+    this.mix();
+};
 
 Juicy.prototype.water = function() {
-    console.log('烧水')
-}
+    console.log('烧水');
+};
 Juicy.prototype.cailiao = function() {
-    // 此部分由子类型重写，所以暂时先抛出异常  
-    throw new Error('此部分由子类型重写，所以暂时先抛出异常')
-}
+    // 此部分由子类型重写，所以暂时先抛出异常
+    throw new Error('此部分由子类型重写，所以暂时先抛出异常');
+};
 Juicy.prototype.mix = function() {
-    console.log('搅拌')
-}  
+    console.log('搅拌');
+};
 
 // 子类型
-function Apple() {}  
+function Apple() {}
 
-// 先继承父类型 
-Apple.prototype = new Juicy() 
+// 先继承父类型
+Apple.prototype = new Juicy();
 
-// 重写材料方法  
+// 重写材料方法
 Apple.prototype.cailiao = function() {
-    console.log('放入苹果')
-}
+    console.log('放入苹果');
+};
 
-let apple = new Apple()
-apple.make()
+let apple = new Apple();
+apple.make();
 
 // 烧水
 // 放入苹果
 // 搅拌
-```  
-### 命令模式  
-将请求封装成对象，分离命令接受者和发起者之间的耦合。 命令执行之前在执行对象中传入接受者。主要目的相互之间的解耦。简单而言分为三个对象  
-* 发起者：发出调用命令即可，具体如何执行，谁执行并不需要清楚。
-* 接受者：有对应的接口处理不同的命令，至于命令是什么，谁发出的，不用关心
-* 命令对象：上面讲发起者和接受者分开了，二者之间需要个连接桥梁。这就是命令对象。命令对象接受发送者的调用，然后调用接受者的相应接口。  
+```
+
+### 命令模式
+
+将请求封装成对象，分离命令接受者和发起者之间的耦合。 命令执行之前在执行对象中传入接受者。主要目的相互之间的解耦。简单而言分为三个对象
+
+-   发起者：发出调用命令即可，具体如何执行，谁执行并不需要清楚。
+-   接受者：有对应的接口处理不同的命令，至于命令是什么，谁发出的，不用关心
+-   命令对象：上面讲发起者和接受者分开了，二者之间需要个连接桥梁。这就是命令对象。命令对象接受发送者的调用，然后调用接受者的相应接口。
 
 ```js
 // 发出命令者
 let setCommand = function(btn, fn) {
     btn.onClick = function() {
-        fn()
-    }
-} 
+        fn();
+    };
+};
 
-// 执行命令者  
+// 执行命令者
 let doSth = {
     add: function() {
-        console.log('添加') 
+        console.log('添加');
     },
     del: function() {
-        console.log('删除')
-    } 
-}
+        console.log('删除');
+    }
+};
 
 // 命令对象
 let commandObj = function(reciver) {
     return function() {
-        reciver.add()
-    }
-}
+        reciver.add();
+    };
+};
 
-setCommand(button, commandObj(doSth))
-``` 
+setCommand(button, commandObj(doSth));
+```
 
-优点：  
-1. 降低对象之间的耦合性  
-2. 新的命令可以很容易加入到系统之中  
-3. 调用同一方法实现不同的功能  
+优点：
 
-
-　　
+1. 降低对象之间的耦合性
+2. 新的命令可以很容易加入到系统之中
+3. 调用同一方法实现不同的功能
