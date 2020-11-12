@@ -35,11 +35,12 @@ title: JS设计模式
 
 ### 工场设计模式
 
-需要大量创建对象  
+需要大量创建对象
 
-#### 简单工场模式  
+#### 简单工场模式
+
 ```js
-// 设定：用咖啡机制造不同浓度的咖啡  
+// 设定：用咖啡机制造不同浓度的咖啡
 /**
  * @method coffeeMake
  * @param { dou } 咖啡豆
@@ -47,17 +48,61 @@ title: JS设计模式
  * @return { object } 咖啡
  */
 function coffeeMake(dou, water) {
-    let coffee = new Object()  
-    coffee.dou = dou  
-    coffee.water = water
-    coffee.percent = dou / water // 咖啡的浓度比例  
-    return coffee
+    let coffee = new Object();
+    coffee.dou = dou;
+    coffee.water = water;
+    coffee.percent = dou / water; // 咖啡的浓度比例
+    return coffee;
 }
 
-coffeeMake(5, 10)
+coffeeMake(5, 10);
 ```
 
-### 建造者模式  
+#### 复杂工场模式
+
+```js
+// 设定：果汁厂，给予不同的原材料产出不同的果汁
+// 思考：每个原材料的制作方法不同，所以传入对象需将制作方法传入
+
+function Juicy() {}
+
+// 扩展业务，传入原材料和方法
+Juicy.prototype.extend = function(obj) {
+    for (const key in obj) {
+        this[key] = obj[key];
+    }
+};
+
+// 根据传入的方法来制作果汁
+Juicy.prototype.make = function(type, percent) {
+    console.log(this[type]);
+
+    // 判断是否具有生产果汁的方法
+    if (typeof this[type] === 'function') {
+        let func = this[type];
+        func.prototype = Juicy.prototype;
+        return new func(percent);
+    } else {
+        console.log('不具备生产这个果汁的能力');
+    }
+};
+
+let juicy = new Juicy();
+juicy.extend({
+    Apple: function(percent) {
+        console.log(`制作一杯浓度为${percent}的苹果汁`);
+    },
+    Pear: function(percent) {
+        console.log(`制作一杯浓度为${percent}的梨子汁`);
+    }
+});
+
+juicy.make('Apple', '50%');
+console.log('juicy', juicy);
+```
+
+### 建造者模式
+
 精细化组合对象，先将其功能模块写出来，最后进行组装。只需少量创建对象。
 
 ### 单例设计模式
