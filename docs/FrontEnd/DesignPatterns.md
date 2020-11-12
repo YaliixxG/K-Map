@@ -35,7 +35,27 @@ title: JS设计模式
 
 ### 工场设计模式
 
-需要大量创建对象
+需要大量创建对象  
+
+#### 简单工场模式  
+```js
+// 设定：用咖啡机制造不同浓度的咖啡  
+/**
+ * @method coffeeMake
+ * @param { dou } 咖啡豆
+ * @param { water } 水
+ * @return { object } 咖啡
+ */
+function coffeeMake(dou, water) {
+    let coffee = new Object()  
+    coffee.dou = dou  
+    coffee.water = water
+    coffee.percent = dou / water // 咖啡的浓度比例  
+    return coffee
+}
+
+coffeeMake(5, 10)
+```
 
 ### 建造者模式  
 精细化组合对象，先将其功能模块写出来，最后进行组装。只需少量创建对象。
