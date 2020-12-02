@@ -2,7 +2,7 @@
 title: ssr 服务端渲染
 ---
 
-# <font color="#090768">ssr 服务端渲染</font>
+# <font color="#fdd333">ssr 服务端渲染</font>
 
 ### 什么是 ssr ？
 
@@ -48,3 +48,46 @@ title: ssr 服务端渲染
 #### 为什么 `Node`
 
 作为服务端语言，解析 `JS` 最好的肯定是 `Node` 了
+
+#### Node + Vue + vue-server-renderer
+
+<strong>vue-server-renderer</strong>: `npm install vue-server-renderer`，这个包主要是提供 Vue 2.0 的 Node.js 服务器端呈现
+
+```js
+const vue = require('vue');
+const server = require('express')();
+
+// 创建一个 renderer 实例
+const renderer = require('vue-server-renderer').createRenderer();
+const fs = require('fs');
+
+// 根据请求的地址，生成对应的vue 实例的方法
+function createApp(url) {
+    // doSth
+}
+server.get('*', (req, res) => {
+    const app = createApp(req.url);
+
+    // 将Vue实例呈现为字符串。 回调是一个标准的Node.js回调，它接收错误作为第一个参数
+    renderer.renderToString(app, (err, html) => res.end(html));
+});
+server.listen(1000);
+```
+
+#### 特性
+
+以`vue`项目说明
+
+-   每一次访问必须新建一个 vue 实例
+-   只会触发组件的 `beforeCreate` 和 `created` 钩子，所以需要客户端 JS  
+    服务端解析 JS 时，看上面的代码可知生命周期只会进行到 `created` 阶段，也就是生成实例的阶段，实例生成后即会被转成字符串形式的 `html` 返回给客户端。所以挂载实例的`mounted`的阶段是没有的，而后续的交互操作（点击事件，鼠标移动事件...）不可能在服务端执行，只能在浏览器上面完成，所以客户端需要有 JS 去执行这些操作，不可能把所有的 JS 都放在服务器。
+
+#### ssr 工程化流程图
+
+![工程化流程图](../.vuepress/public/imgs/ssr-map.png)  
+
+1. `Source`部分：应用代码平常只会有一个入口文件，打包后也只会生成一个 JS 文件。但是现在需要配置两个入口，服务端入口和客户端入口。  
+2. 由于有两个入口文件，所以webpack 需进行两次打包，生成 `server.bundle.js` 和 `client.bundle.js`。  
+3. 在 node 服务器中，`server.bundle.js`的作用主要是根据请求的地址生成实例，再通过`Bundle Renderer` 将其生成字符串形式的 html，并返回给浏览器。
+4. 浏览器接收到服务端返回的 html后，再配合`client.bundle.js`进行渲染，后续就由浏览器进行操作了。  
+5. `hydrate` 描述的是 `DOM` 复用服务端渲染的内容时尽可能保留结构，并补充事件绑定等 `Client` 特有内容的过程。
