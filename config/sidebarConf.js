@@ -32,7 +32,8 @@ module.exports = [
             '/FrontEnd/websocket',
             '/FrontEnd/browsersCompatibility',
             '/FrontEnd/Inheritance',
-            '/FrontEnd/DesignPatterns'
+            '/FrontEnd/DesignPatterns',
+            '/FrontEnd/ssr'
         ]
     },
     {

@@ -10,11 +10,11 @@ title: ssr 服务端渲染
 
 -   没使用服务渲染，当请求 user 页面时，返回的 body 里为空，之后执行 js 将 html 结构注入到 body 里，结合 css 显示出来
 
-    ![没有使用 ssr](../.vuepress/public/imgs/no-ssr.webp)
+    ![没有使用 ssr](../.vuepress/public/imgs/no-ssr.jpg)
 
 -   使用了服务端渲染，当请求 user 页面时，返回的 body 里已经有了首屏的 html 结构，之后结合 css 显示出来
 
-    ![使用 ssr](../.vuepress/public/imgs/yes-ssr.webp)
+    ![使用 ssr](../.vuepress/public/imgs/yes-ssr.jpg)
 
 ### 纯浏览器渲染
 
@@ -33,9 +33,9 @@ title: ssr 服务端渲染
 
 ####如何解决纯浏览器渲染的问题，为什么要用 ssr
 
-<strong>核心问题：纯浏览器渲染，是需要执行 `JS`（`app.bundle.js`），再根据 `JS` 生成 `html` 页面。<strong>
+<strong>核心问题：纯浏览器渲染，是需要执行 `JS`（`app.bundle.js`），再根据 `JS` 生成 `html` 页面。</strong>
 
-<strong>问题解决：将 `JS` 的执行移到服务器去进行，减少客户端的压力，客户端只需直接接收服务端返回的 `html` 就可以了。<strong>
+<strong>问题解决：将 `JS` 的执行移到服务器去进行，减少客户端的压力，客户端只需直接接收服务端返回的 `html` 就可以了。</strong>
 
 ### ssr 渲染
 
@@ -43,7 +43,7 @@ title: ssr 服务端渲染
 
 #### 过程
 
-浏览器请求访问某个页面，服务器接收到请求后，解析执行 js 生成 html 页面，将其返回给浏览器。
+浏览器请求访问某个页面，服务器接收到请求后，解析执行 `js` 生成 `html` 页面，将其返回给浏览器。比如`vue`，解析 `JS` 时，`JS` 里面全部都是`.vue`的文件，也就是 `vue` 实例，服务器就是要将这些实例转成字符串形式的 `html`
 
 #### 为什么 `Node`
 
