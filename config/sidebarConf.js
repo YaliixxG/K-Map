@@ -33,7 +33,9 @@ module.exports = [
             '/FrontEnd/browsersCompatibility',
             '/FrontEnd/Inheritance',
             '/FrontEnd/DesignPatterns',
-            '/FrontEnd/ssr'
+            '/FrontEnd/ssr',
+            '/FrontEnd/loadingSlow',
+            '/FrontEnd/sliceToUpdate'
         ]
     },
     {
