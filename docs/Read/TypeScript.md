@@ -29,6 +29,13 @@ let arr: [number, string, boolean] = [1, 'js', true] // 必须和前面的类型
 ## 枚举类型 
 > 事先考虑到某一变量可能取的值，尽量用自然语言中含义清楚的单词来表示它的每一个值，这种方法成为枚举方法，用这种方法定义的类型称枚举类型。
 ```ts
+enum 枚举值 {
+    标识符 = 整型常数,
+    标识符 = 整型常数,
+    ...
+    标识符 = 整型常数
+}
+
 // flag  成功状态为 1 错误状态为 -1
 enum Flag { success = 1, error = -1 }
 let f: Flag = Flag.success
