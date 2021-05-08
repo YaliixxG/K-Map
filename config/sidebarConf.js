@@ -75,7 +75,7 @@ module.exports = [
     },
     {
         title: '阅读',
-        children: ['/Read/mathematicalBeauty', '/Read/HowComputersWork', '/Read/Vue', '/Read/SoftwareExam']
+        children: ['/Read/mathematicalBeauty', '/Read/HowComputersWork', '/Read/Vue', '/Read/SoftwareExam', '/Read/TypeScript']
     },
     {
         title: '代码',
