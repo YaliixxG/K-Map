@@ -333,3 +333,73 @@ let p = new Person();
 p.run(); // 调用实例方法
 Person.run(); // 调用静态方法
 ```
+
+### 多态
+
+> 属于继承，父类定义一个方法不去实现，让继承它的子类去实现，每一个子类有不同的表现
+
+```ts
+class Animal {
+    name: string;
+    constructor(name: string) {
+        this.name = name;
+    }
+
+    eat() {
+        // 子类具体吃什么，怎么操作不知道，由继承它的子类去实现，每个子类不一样
+        console.log('吃东西的方法');
+    }
+}
+
+class Dog extends Animal {
+    constructor(name: string) {
+        super(name);
+    }
+
+    eat() {
+        return this.name + '吃骨头';
+    }
+}
+
+class Cat extends Animal {
+    constructor(name: string) {
+        super(name);
+    }
+
+    eat() {
+        return this.name + '吃老鼠';
+    }
+}
+```
+
+### 抽象类和方法
+
+> 是用来定义其他类继承的基类，不能直接被实例化。实际上就是用来定义标准（定义这个类要求它的子类继承的标准）。用关键字 abstract 来定义，抽象类中的抽象方法不包含具体实现并且必须在派生类中实现。抽象方法只能出现在抽象类中。
+
+  
+  比如 Animal 类要求它的子类必须包含 eat 方法，则需将 Animal 定义为抽象类，eat 方法定义为抽象方法。
+
+```ts
+// 抽象类里面也可以有实例方法，实例属性，这些是不要求子类必须
+abstract class Animal {
+    public name: string;
+    constructor(name: string) {
+        this.name = name;
+    }
+    abstract eat(): any;
+    more() {
+        console.log('非抽象类方法，子类可以不实现');
+    }
+}
+
+class Dog extends Animal {
+    constructor(name: string) {
+        super(name);
+    }
+
+    // 抽象类的子类必须实现抽象类里面的抽象方法
+    eat() {
+        return this.name + '吃骨头';
+    }
+}
+```
