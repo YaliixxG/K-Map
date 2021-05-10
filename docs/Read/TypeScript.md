@@ -376,8 +376,7 @@ class Cat extends Animal {
 
 > 是用来定义其他类继承的基类，不能直接被实例化。实际上就是用来定义标准（定义这个类要求它的子类继承的标准）。用关键字 abstract 来定义，抽象类中的抽象方法不包含具体实现并且必须在派生类中实现。抽象方法只能出现在抽象类中。
 
-  
-  比如 Animal 类要求它的子类必须包含 eat 方法，则需将 Animal 定义为抽象类，eat 方法定义为抽象方法。
+比如 Animal 类要求它的子类必须包含 eat 方法，则需将 Animal 定义为抽象类，eat 方法定义为抽象方法。
 
 ```ts
 // 抽象类里面也可以有实例方法，实例属性，这些是不要求子类必须
@@ -402,4 +401,125 @@ class Dog extends Animal {
         return this.name + '吃骨头';
     }
 }
+```
+
+## 接口
+
+> 在面向对象编程中，接口是一种规范的定义，它定义了行为和动作的规范。在程序设计里面，接口起到一种限制和规范的作用。接口定义了某一批类所需要遵守的规范，接口不关心这些类的内部状态数据，也不关心这些类方法的实现细节，它只规定这批类里必须提供某些方法。提供这些方法的类就可以满足实际需要。
+
+接口类型：
+
+-   属性
+-   函数
+-   可索引
+-   类
+
+### 属性接口
+
+> 对参数对象的约束。关键字 interface
+
+```ts
+// 定义接口
+interface 接口名称 {
+   ... ;
+   ... ; // 分号结束
+}
+```
+
+调用传参时，接口里面定义的参数可以定义为必传和非必传
+
+```ts
+interface FullName {
+    firstName: string;
+    secondName: string;
+    age?: number; // 可选属性，参数非必传
+    sex: string;
+}
+
+function printName(name: FullName) {
+    console.log(name.firstName, name.secondName);
+}
+
+// 传入参数必须严格按照接口定义的规范来，参数顺序可以不一样
+let params = {
+    firstName: '张',
+    secondName: '三',
+    age: 20, // 此为非必传参数，可以不传
+    sex: '女'
+};
+printName(params);
+```
+
+### 函数型接口
+
+```ts
+interface getNumber {
+    (cur: number, next: number): number;
+}
+
+const getSum: getNumber = function(cur: number, next: number): number {
+    return cur + next;
+};
+
+getSum(1, 2);
+```
+
+### 可索引接口（不常用）
+
+> 对数组，对象的约束
+
+```ts
+// 数组的 key 值为 number，对象的 key 值为 string
+interface userArr {
+    // key 值为 number, value 值为 string
+    [index: number]: string;
+}
+
+const arr = ['123', 'js', 'ts'];
+
+interface userObj {
+    // key 值为 string, value 值为 string
+    [index: string]: string;
+}
+
+const obj = { name: '张三', sex: 'man' };
+```
+
+### 类类型接口
+
+> 与抽象类接口相似，是对类的约束
+
+```ts
+interface Animal {
+    name: string;
+    eat(str: string): void;
+}
+
+class Dog implements Animal {
+    name: string;
+    constructor(name: string) {
+        this.name = name;
+    }
+
+    eat() {
+        console.log(this.name + '吃狗粮');
+    }
+}
+
+let dog = new Dog('琪琪');
+dog.eat();
+
+class Cat implements Animal {
+    name: string;
+    constructor(name: string) {
+        this.name = name;
+    }
+
+    eat(food: string) {
+        console.log(this.name + '吃' + food);
+    }
+}
+
+let cat = new Cat('老王');
+cat.eat('猫粮');
 ```
