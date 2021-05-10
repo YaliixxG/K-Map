@@ -487,7 +487,7 @@ const obj = { name: '张三', sex: 'man' };
 
 ### 类类型接口
 
-> 与抽象类接口相似，是对类的约束
+> 与抽象类接口相似，是对类的约束。关键字 implements，意为实现接口，接口定义的准则必须全部实现，否则报错
 
 ```ts
 interface Animal {
@@ -523,3 +523,58 @@ class Cat implements Animal {
 let cat = new Cat('老王');
 cat.eat('猫粮');
 ```
+
+### 接口继承
+
+> 接口 B 继承接口 A 的话，接口 B 被实现时，接口 A 的部分也必须全部实现。
+
+```ts
+interface Person {
+    eat(str: string): void;
+}
+
+interface Someone extends Person {
+    work(str: string): void;
+}
+
+// eat 方法，work 方法全部都要有
+class Teacher implements Someone {
+    public name: string;
+    constructor(name: string) {
+        this.name = name;
+    }
+    eat() {
+        console.log(this.name + '喜欢喝茶颜悦色');
+    }
+    work(job: string) {
+        console.log(this.name + '的职业是' + job);
+    }
+}
+
+let teacher = new Teacher('周杰伦');
+teacher.eat();
+teacher.work('老师');
+```
+## 泛型 
+
+### 泛型的定义
+> 解决类、接口、方法的复用性，以及对不特定数据类型的支持。一般用大写字母 T 来表示泛型
+
+### 泛型函数
+```ts
+//  这表示传入的类型由具体调用时确定
+function getInfo<T>(value: T):T {
+    return value
+}
+
+getInfo<number>(123)
+
+function getData<T>(value: T):string {
+    return '123'
+}
+
+getData<number>(123)
+```  
+### 泛型类
+
+
