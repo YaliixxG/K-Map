@@ -555,26 +555,156 @@ let teacher = new Teacher('周杰伦');
 teacher.eat();
 teacher.work('老师');
 ```
-## 泛型 
+
+## 泛型
 
 ### 泛型的定义
+
 > 解决类、接口、方法的复用性，以及对不特定数据类型的支持。一般用大写字母 T 来表示泛型
 
 ### 泛型函数
+
 ```ts
 //  这表示传入的类型由具体调用时确定
-function getInfo<T>(value: T):T {
-    return value
+function getInfo<T>(value: T): T {
+    return value;
 }
 
-getInfo<number>(123)
+getInfo<number>(123);
 
-function getData<T>(value: T):string {
-    return '123'
+function getData<T>(value: T): string {
+    return '123';
 }
 
-getData<number>(123)
-```  
+getData<number>(123);
+```
+
 ### 泛型类
 
+```ts
+// 最小值类
+// 参数类型明确定义：要求传入参数以及返回值为数字类型
+class MinClass {
+    public list: number[] = [];
+    add(value: number): void {
+        this.list.push(value);
+    }
+    getMin(): number {
+        let minNum: number = this.list[0];
+        for (let i = 1; i < this.list.length; i++) {
+            if (minNum > this.list[i]) {
+                minNum = this.list[i];
+            }
+        }
+        return minNum;
+    }
+}
 
+let m = new MinClass();
+
+m.add(33);
+m.add(8);
+m.add(3);
+m.add(4);
+m.getMin();
+
+// 参数类型不明确定义：要求传入参数及返回值为数字或者字符串类型;
+class MinClass<T> {
+    public list: T[] = [];
+    add(value: T): void {
+        this.list.push(value);
+    }
+    getMin(): T {
+        let minNum: T = this.list[0];
+        for (let i = 1; i < this.list.length; i++) {
+            if (minNum > this.list[i]) {
+                minNum = this.list[i];
+            }
+        }
+        return minNum;
+    }
+}
+let m = new MinClass<number>(); // 实例化类，指定 T 代表的类型
+
+m.add(33);
+m.add(8);
+m.add(3);
+m.add(4);
+console.log(m.getMin());
+
+let s = new MinClass<string>();
+
+s.add('h');
+s.add('d');
+s.add('i');
+s.add('l');
+s.getMin();
+
+// 类也可以当参数传入泛型类
+// 定义一个泛型类
+class MysqlDB<T> {
+    add(info: T): boolean {
+        console.log(info);
+        return true;
+    }
+}
+
+// 定义传入的参数类
+class User {
+    name: string | undefined;
+    age: number | undefined;
+    // constructor(name: string | undefined, age: number | undefined) {
+    //     this.name = name;
+    //     this.age = age;
+    // }
+
+    // 如果想传入 JSON 对象的话
+    constructor(params: { name: string | undefined; age: number | undefined }) {
+        this.name = params.name;
+        this.age = params.age;
+    }
+}
+
+// let u = new User('周杰伦', 38);
+let u = new User({ name: '周杰伦', age: 38 });
+
+// 用 User 来校验传入的是不是 User 类，类当做传入参数的校验，作用等同于上面<string> <number>
+let mysql = new MysqlDB<User>();
+mysql.add(u);
+```
+
+### 泛型接口
+
+```ts
+// 写法一
+interface configFn {
+    <T>(value: T): T; // 传入的参数与返回值都是不确定的类型
+}
+
+let getName: configFn = function<T>(value: T): T {
+    return value;
+};
+
+getName('孙燕姿');
+
+// 写法二
+interface configFn<T> {
+    (value: T): T;
+}
+
+function getName<T>(value: T): T {
+    return value;
+}
+
+let doGetName: configFn<string> = getName;
+
+doGetName('孙燕姿');
+```
+
+> 当一个类实现泛型接口时，这个类也一定是泛型类
+
+```ts
+class 类名<T> implements 接口名称<T> {
+    // doSth
+}
+```
