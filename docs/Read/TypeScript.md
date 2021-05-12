@@ -708,3 +708,205 @@ class 类名<T> implements 接口名称<T> {
     // doSth
 }
 ```
+
+## 命名空间
+
+> 关键字 namespace。用 namespace 加在自己代码的最外部，防止与他人在项目中类，方法，变量命名冲突。内部的类、方法、变量名通过 export 暴露出来。
+
+```ts
+namespace Jay {
+    export class A {
+        ....
+    }
+    export class B {
+        ...
+    }
+}
+
+// 调用
+let Ja = new Jay.A()
+let Jb = new Jay.B()
+```
+
+命名空间也可以通过`export`暴露出去，再通过`import` 引入
+
+## 装饰器
+
+> 一种特殊类型的声明。它能够被附加到类声明，方法，属性或参数上，可以修改类的行为。通俗的说法就是一个方法，可以注入到类、方法、属性参数上来扩展其功能。
+
+### 类装饰器
+
+一、普通装饰器（无传参，默认传参为当前装饰的类）
+
+```ts
+function logInit(target: any) {
+    console.log(target); // 打印出来的为当前类 Init
+
+    // 扩展类的属性
+    target.prototype.name = '扩展属性 --- name';
+
+    // 扩展类的方法
+    target.prototype.loading = function() {
+        console.log('扩展类的方法 --- loading');
+    };
+}
+
+@logInit // 没有传入参数，默认传参为当前装饰的类
+class Init {
+    constructor() {}
+}
+
+let init: any = new Init();
+console.log(init.name); // 扩展属性 --- name
+init.loading(); // 扩展类的方法 --- loading
+```
+
+二、装饰器工厂（可传参）
+
+```ts
+function logInit(params: string) {
+    return function(target: any) {
+        console.log('传过来的参数 --- params', params); // 周杰伦
+        console.log('默认传过来的当前装饰类 --- target', target); // 当前装饰类 Init
+
+        // 扩展类的属性
+        target.prototype.name = '扩展属性 --- name';
+
+        // 扩展类的方法
+        target.prototype.loading = function() {
+            console.log('扩展类的方法 --- loading');
+        };
+    };
+}
+
+@logInit('周杰伦')
+class Init {
+    constructor() {}
+}
+
+let init: any = new Init();
+console.log(init.name); // 扩展属性 --- name
+init.loading(); // 扩展类的方法 --- loading
+```
+
+三、重载当前装饰类（修改当前装饰类）
+
+> 关键语句 return class extends xxx (xxx 表示为传过来的类)
+
+```ts
+function logInit(target: any) {
+    console.log('默认传过来的当前装饰类 --- target', target); // 当前装饰类 Init
+    return class extends target {
+        // 重载类，通过继承传过来的装饰类来重写，修改类的属性，方法
+        name: string = '重载修改后的 name 属性';
+        loading() {
+            console.log('重载修噶后的 loading 方法');
+        }
+    };
+}
+
+@logInit
+class Init {
+    public name: string | undefined;
+    constructor() {
+        this.name = 'name 属性';
+    }
+    loading() {
+        console.log('loading 方法');
+    }
+}
+
+let init = new Init();
+console.log(init.name); // 重载修改后的 name 属性
+init.loading(); // 重载修噶后的 loading 方法
+```
+
+### 属性装饰器
+
+> 关键语句 return function(参数一, 参数二)
+
+-   参数一：对于静态成员来说是类的构造函数，对于实例成员是类的原型对象
+-   参数二：被装饰的属性名
+
+```ts
+function logProperty(params: any) {
+    console.log('传过来的属性参数值 --- params', params); // 八度空间 | 43
+    return function(target: any, attr: any) {
+        console.log(target);
+        console.log('被装饰的属性 --- attr', attr); // 当前装饰属性 name | age
+
+        target[attr] = params; // 修改属性值
+    };
+}
+
+class Init {
+    @logProperty('八度空间') // 需要装饰哪个属性就写在该属性的上面
+    name: string | undefined;
+    @logProperty(43) // 需要装饰哪个属性就写在该属性的上面
+    age: number | undefined;
+    constructor() {}
+    getName() {
+        console.log(this.name);
+    }
+    getAge() {
+        console.log(this.age);
+    }
+}
+
+let init = new Init();
+init.getName(); // 八度空间
+init.getAge(); // 43
+```
+
+### 方法装饰器
+
+> 应用到方法的属性描述符上，可以用来监视，修改，替换方法定义。关键句 return function(参数一, 参数二, 参数三)
+
+-   参数一：对于静态成员来说是类的构造函数，对于实例成员是类的原型对象
+-   参数二： 被装饰的方法名
+-   参数三：被装饰的方法的属性描述符，此参数下的 value 属性即为被装饰的方法函数
+
+```ts
+function logFn(params: any) {
+    return function(target: any, fnName: any, desc: any) {
+        console.log('方法装饰器传来的参数', params) // xxxxx
+        console.log(' 参数一', target)
+        console.log('参数二', fnName)
+        console.log('参数三', desc)
+
+        // 替换方法
+        desc.value = function() {
+            console.log('这是替换此方法的操作，不会执行原方法printInfo的操作')
+        }
+
+        // 修改方法
+        1. 保存原方法
+        let oMethods = desc.value
+        desc.value = function(...args: any[]) { // 此参数为实例方法调用时传入的参数
+            console.log('这是修改此方法的操作，执行完后会继续执行原方法printInfo的操作')
+
+            // 2. 调用方法，将参数传入
+            oMethods.apply(this, args)
+        }
+
+        // 扩展方法
+        target.add = function() {
+            console.log('扩展方法')
+        }
+
+    }
+}
+
+class Init {
+    constructor() {}
+    @logFn('xxxxx')
+    printInfo() {
+        console.log('原方法的打印信息')
+    }
+}
+
+let init:any = new Init()
+
+init.printInfo()
+init.add()
+```
