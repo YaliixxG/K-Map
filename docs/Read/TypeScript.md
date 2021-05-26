@@ -900,7 +900,7 @@ function logFn(params: any) {
 class Init {
     constructor() {}
     @logFn('xxxxx')
-    printInfo() {
+    printInfo(...args: any[]) {
         console.log('原方法的打印信息')
     }
 }
@@ -910,3 +910,10 @@ let init:any = new Init()
 init.printInfo()
 init.add()
 ```
+### 方法参数装饰器  
+不常用，略。
+
+### 装饰器执行顺序  
+属性装饰器 => 方法装饰器 => 方法参数装饰器 => 类装饰器  
+
+如果有多个同类型的装饰器时，执行顺序是由`由后往前`执行
