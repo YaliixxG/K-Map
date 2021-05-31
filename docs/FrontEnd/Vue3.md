@@ -231,25 +231,66 @@ watch([data, info], (newVal, oldVal) => {
 });
 ```
 
-### 生命周期 hooks 
-> 在 vue2的生命周期函数上，因为 setup 是围绕beforeCreate，created两个钩子函数运行的，所以不需要显示的定义他们。这两个周期的函数可以直接在 setup 里面编写。其他的生命周期钩子函数需要引入后才能执行，不能直接写。
+### 生命周期 hooks
+
+> 在 vue2 的生命周期函数上，因为 setup 是围绕 beforeCreate，created 两个钩子函数运行的，所以不需要显示的定义他们。这两个周期的函数可以直接在 setup 里面编写。其他的生命周期钩子函数需要引入后才能执行，不能直接写。
 
 ```js
 // setup
 onMounted(() => {
     // doSth
-})
+});
 ```
-### 接收父组件的 props  
+
+### 接收父组件的 props
+
 > setup()函数中的第一个参数就是父组件传的 props，并且不需要 return 出去，可以直接在模板中使用
+
 ```js
 export default {
     props: ['msg'],
 
     // setup 的第一个参数的值就是传过来的参数
     setup(params) {
-        console.log(params) // 传过来的 msg
+        console.log(params); // 传过来的 msg
     }
+};
+```
+
+### Provide 和 Inject 的使用
+
+> 爷，父等高层组件向低层组件传值；并且改变任何一方的数据，另一方也会随之变化。
+
+````js
+// 高层组件
+setup() {
+    let farther = reactive({
+            name: '爸爸',
+            age: '60'
+        })
+    provide('farther', farther)
 }
+
+
+```html
+<!--低层组件-->
+```<template>
+    <div>
+        <p>父亲的名字：{{ name }}</p>
+        <p>父亲的年龄：{{ age }}</p>
+    </div>
+</template>
+````
+
+```js
+setup() {
+      let farther = inject('farther')
+      return {
+          ...toRefs(farther)
+      }
+  }
+```
+
+```
 
 ```
