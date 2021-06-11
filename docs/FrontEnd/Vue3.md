@@ -14,7 +14,7 @@ title: Vue3
 -   watchEffect：监听数据变化
 -   watch：监听数据变化
 -   computed：计算属性
--   toRefs：主要用于结构响应式对象数据
+-   toRefs：主要用于解构响应式对象数据
 -   生命周期的 hooks
 
 ## 响应式数据 ref，reactive 的基本使用及修改
@@ -261,7 +261,7 @@ export default {
 
 > 爷，父等高层组件向低层组件传值；并且改变任何一方的数据，另一方也会随之变化。
 
-````js
+```js
 // 高层组件
 setup() {
     let farther = reactive({
@@ -270,11 +270,12 @@ setup() {
         })
     provide('farther', farther)
 }
+```
 
 
 ```html
 <!--低层组件-->
-```<template>
+<template>
     <div>
         <p>父亲的名字：{{ name }}</p>
         <p>父亲的年龄：{{ age }}</p>
@@ -291,6 +292,52 @@ setup() {
   }
 ```
 
-```
+## 集成 Typescript
 
+### 创建 vue 项目，集成 ts
+
+```js
+$ vue create project-name
+$ cd project-name
+$ vue add typescript
+```
+### 创建组件  
+> 关键词：defineComponent。引入 defineComponent 来定义组件
+
+```js
+import { defineComponent } from 'vue'
+export default defineComponent({
+     name: 'Home',
+     // ...
+})
+```
+### 不使用 composition api 时，通过接口 interface 批量定义 data
+```js
+import { defineComponent } from 'vue'
+
+// 定义 Home接口 
+interface Home {
+    name: string,
+    title: string,
+    scanCount: number,
+    content?: string
+}
+
+// 实现接口 Home
+let homeData: Home = {
+    name: '我是 Home 组件',
+    title: '我是一个标题',
+    scanCount: 123
+}
+export default defineComponent({
+     name: 'Home',
+     data() {
+         return homeData
+     },
+     methods: {
+         setScanCount():void {
+            this.scanCount = 567 
+         }
+     }
+})
 ```

@@ -880,7 +880,7 @@ function logFn(params: any) {
         }
 
         // 修改方法
-        1. 保存原方法
+        // 1. 保存原方法
         let oMethods = desc.value
         desc.value = function(...args: any[]) { // 此参数为实例方法调用时传入的参数
             console.log('这是修改此方法的操作，执行完后会继续执行原方法printInfo的操作')
