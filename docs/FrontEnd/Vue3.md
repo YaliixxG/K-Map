@@ -341,3 +341,60 @@ export default defineComponent({
      }
 })
 ```
+### refs 定义及通过接口 interface 定义 reactive
+```js
+import { defineComponent, ref, reactive, toRefs } from 'vue'
+
+// 定义 Home接口 
+interface User {
+    name: string,
+    age: number | string,
+    setName(username: string): void 
+}
+
+// 实现接口 Home
+let homeData: Home = {
+    name: '我是 Home 组件',
+    title: '我是一个标题',
+    scanCount: 123
+}
+export default defineComponent({
+     name: 'Home',
+     setup() {
+        // ref，不能写成 let count: number | string = ref(0)
+        let count= ref<number | string>(0)
+        // 实现接口的三种方式  
+        // 第一种
+        let user: User = reactive({
+            name: '王尼玛',
+            age: 30,
+            setName(username: string): void {
+                this.name = username
+            }
+        })
+
+        // 第二种
+        let user = reactive<User>({
+            name: '王尼玛',
+            age: 30,
+            setName(username: string): void {
+                this.name = username
+            }
+        })
+
+        // 第三种
+        let user = reactive({
+            name: '王尼玛',
+            age: 30,
+            setName(username: string): void {
+                this.name = username
+            }
+        }) as User 
+
+        return {
+            ...toRefs(user),
+            count
+        }
+     }
+})
+```
