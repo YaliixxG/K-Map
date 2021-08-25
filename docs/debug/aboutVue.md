@@ -69,7 +69,7 @@ data() {
     },
 ```
 
-#### 5 Vue 循环动态绑定变量 v-model="this.formData['name' + index]" ，输入框无法输入
+#### 5. Vue 循环动态绑定变量 v-model="this.formData['name' + index]" ，输入框无法输入
 
 答：在初始化赋值方法时，使用常规的 `this.formData['name' + index] = item.name`是无法正常输入的，此时需要用`this.$set`来解决这个问题
 
