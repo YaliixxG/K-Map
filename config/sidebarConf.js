@@ -44,7 +44,7 @@ module.exports = [
             '/DataStructure/basic',
             '/DataStructure/set',
             '/DataStructure/tree',
-            '/DataStructure/HashTable',
+            '/DataStructure/HashTable'
         ]
     },
     {
@@ -54,8 +54,8 @@ module.exports = [
             '/Algorithm/Quicksort',
             '/Algorithm/BFS',
             '/Algorithm/Greedy',
-            '/Algorithm/Dynamic', 
-            '/Algorithm/List',          
+            '/Algorithm/Dynamic',
+            '/Algorithm/List'
         ]
     },
     {
@@ -75,11 +75,17 @@ module.exports = [
     },
     {
         title: '阅读',
-        children: ['/Read/mathematicalBeauty', '/Read/HowComputersWork', '/Read/Vue', '/Read/SoftwareExam', '/Read/TypeScript']
+        children: [
+            '/Read/mathematicalBeauty',
+            '/Read/HowComputersWork',
+            '/Read/Vue',
+            '/Read/SoftwareExam',
+            '/Read/JavascriptYouDontKnow',
+            '/Read/TypeScript'
+        ]
     },
     {
         title: '代码',
         children: ['/Code/commit', '/Code/codeQuality']
-    },
+    }
 ];
-
