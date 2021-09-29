@@ -272,7 +272,6 @@ setup() {
 }
 ```
 
-
 ```html
 <!--低层组件-->
 <template>
@@ -281,7 +280,7 @@ setup() {
         <p>父亲的年龄：{{ age }}</p>
     </div>
 </template>
-````
+```
 
 ```js
 setup() {
@@ -301,26 +300,30 @@ $ vue create project-name
 $ cd project-name
 $ vue add typescript
 ```
-### 创建组件  
+
+### 创建组件
+
 > 关键词：defineComponent。引入 defineComponent 来定义组件
 
 ```js
-import { defineComponent } from 'vue'
+import { defineComponent } from 'vue';
 export default defineComponent({
-     name: 'Home',
-     // ...
-})
+    name: 'Home'
+    // ...
+});
 ```
-### 不使用 composition api 时，通过接口 interface 批量定义 data
-```js
-import { defineComponent } from 'vue'
 
-// 定义 Home接口 
+### 不使用 composition api 时，通过接口 interface 批量定义 data
+
+```js
+import { defineComponent } from 'vue';
+
+// 定义 Home接口
 interface Home {
-    name: string,
-    title: string,
-    scanCount: number,
-    content?: string
+    name: string;
+    title: string;
+    scanCount: number;
+    content?: string;
 }
 
 // 实现接口 Home
@@ -328,28 +331,30 @@ let homeData: Home = {
     name: '我是 Home 组件',
     title: '我是一个标题',
     scanCount: 123
-}
+};
 export default defineComponent({
-     name: 'Home',
-     data() {
-         return homeData
-     },
-     methods: {
-         setScanCount():void {
-            this.scanCount = 567 
-         }
-     }
-})
+    name: 'Home',
+    data() {
+        return homeData;
+    },
+    methods: {
+        setScanCount(): void {
+            this.scanCount = 567;
+        }
+    }
+});
 ```
+
 ### refs 定义及通过接口 interface 定义 reactive
+
 ```js
 import { defineComponent, ref, reactive, toRefs } from 'vue'
 
-// 定义 Home接口 
+// 定义 Home接口
 interface User {
     name: string,
     age: number | string,
-    setName(username: string): void 
+    setName(username: string): void
 }
 
 // 实现接口 Home
@@ -363,7 +368,7 @@ export default defineComponent({
      setup() {
         // ref，不能写成 let count: number | string = ref(0)
         let count= ref<number | string>(0)
-        // 实现接口的三种方式  
+        // 实现接口的三种方式
         // 第一种
         let user: User = reactive({
             name: '王尼玛',
@@ -389,7 +394,7 @@ export default defineComponent({
             setName(username: string): void {
                 this.name = username
             }
-        }) as User 
+        }) as User
 
         return {
             ...toRefs(user),
