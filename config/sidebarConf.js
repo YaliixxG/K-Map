@@ -35,7 +35,10 @@ module.exports = [
             '/FrontEnd/DesignPatterns',
             '/FrontEnd/ssr',
             '/FrontEnd/loadingSlow',
-            '/FrontEnd/sliceToUpdate'
+            '/FrontEnd/sliceToUpdate',
+            '/FrontEnd/ssr',
+            '/FrontEnd/Vue3',
+            '/FrontEnd/webpackOptimize'
         ]
     },
     {

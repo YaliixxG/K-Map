@@ -124,3 +124,72 @@ let a = {
 
 Vue.use(a);
 ```
+
+### 项目复盘
+
+-   `Vue.config.productionTip`: 布尔值，是否启动生产消息  
+    ![productionTip](../.vuepress/public/imgs/productionTip.jpg)
+-   使用`WebViewJavascriptBridge`与原生进行交互 (重点代码如下))
+
+```js
+function setupWebViewJavascriptBridge(callback) {
+    if (window.WebViewJavascriptBridge) {
+        return callback(WebViewJavascriptBridge);
+    }
+    if (window.WVJBCallbacks) {
+        return window.WVJBCallbacks.push(callback);
+    }
+    window.WVJBCallbacks = [callback]; // 创建一个 WVJBCallbacks 全局属性数组，并将 callback 插入到数组中。
+    var WVJBIframe = document.createElement('iframe'); // 创建一个 iframe 元素
+    WVJBIframe.style.display = 'none'; // 不显示
+    WVJBIframe.src = 'wvjbscheme://__BRIDGE_LOADED__'; // 设置 iframe 的 src 属性
+    document.documentElement.appendChild(WVJBIframe); // 把 iframe 添加到当前文导航上。
+    setTimeout(function() {
+        document.documentElement.removeChild(WVJBIframe);
+    }, 0);
+}
+
+// 这里主要是注册 OC 将要调用的 JS 方法。
+setupWebViewJavascriptBridge(function(bridge) {});
+
+// 这里主要是注册 OC 将要调用的 JS 方法。
+setupWebViewJavascriptBridge(function(bridge) {
+    // 声明 OC 需要调用的 JS 方法。
+    bridge.registerHanlder('testJavaScriptFunction', function(
+        data,
+        responseCallback
+    ) {
+        // data 是 OC 传递过来的数据.
+        // responseCallback 是 JS 调用完毕之后传递给 OC 的数据
+        alert('JS 被 OC 调用了.');
+        responseCallback({ data: 'js 的数据', from: 'JS' });
+    });
+});
+```
+* `require.context`的应用   
+   > 一个 webpack 的 api,通过执行require.context函数获取一个特定的上下文,主要用来实现自动化导入模块,在前端工程中,如果遇到从一个文件夹引入很多模块的情况,可以使用这个api,它会遍历文件夹中的指定文件,然后自动导入,使得不需要每次显式的调用import导入模块  
+```js
+/**
+* @param { String } directory 读取文件的路径
+* @param { Boolean } useSubdirectories 是否遍历文件的子目录
+* @param { RegExp } regExp 匹配文件的正则
+*/
+require.context(directory, useSubdirectories = false, regExp = /^.//);
+
+// 举例：遍历当前文件夹下的所有.js 结尾的文件，不遍历子目录
+const files = require.context('.', false, regExp = /.js$/);
+
+let res = []
+files.keys().froEach(key => {
+    if(key === './index.js') return
+    let item = files(key).default
+    res = res.concat(item)
+})
+export default res
+```
+> require.context 返回的是一个函数，并且这个函数有 3 个属性  
+    * resolve: Function 接收一个参数，参数为该文件夹下面匹配文件的相对路径，返回这个文件相对于整个工程的相对路劲
+    * keys: Function 返回匹配成功模块的名字组成的数组
+    * id: String 执行环境的 id，返回的是一个字符串，主要用于 module.hot.accept
+
+   
