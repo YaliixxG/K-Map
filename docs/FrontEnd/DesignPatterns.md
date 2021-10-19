@@ -177,6 +177,36 @@ function Solo(name, age) {
 }
 ```
 
+四、代理模式  
+
+```js
+class CreateUser {
+    constructor(name, age) {
+        this.name = name
+        this.age = age
+    }
+    getInfo() {
+        return `姓名：${this.name},年龄：${this.age}`
+    }
+}
+
+let ProxyCreateUser = (function(){
+    let init = null  
+    return function(name, age) {
+        console.log('init', init)
+        if(!init) {
+            init = new CreateUser(name, age)
+        }
+        return init
+    }
+})()
+
+let a = new ProxyCreateUser('离散1', 1)
+let b = new ProxyCreateUser('离散2', 2)
+
+console.log(a === b) // true 说明是同一个实例，并没有再创建
+```
+
 ### 观察者（发布订阅）模式
 
 有人发布 => 有人订阅 => 一旦有人发布，订阅者就可以收到消息 => 主动权在发布者手中
