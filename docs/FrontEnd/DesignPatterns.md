@@ -177,34 +177,33 @@ function Solo(name, age) {
 }
 ```
 
-四、代理模式  
+四、代理模式
 
 ```js
 class CreateUser {
     constructor(name, age) {
-        this.name = name
-        this.age = age
+        this.name = name;
+        this.age = age;
     }
     getInfo() {
-        return `姓名：${this.name},年龄：${this.age}`
+        return `姓名：${this.name},年龄：${this.age}`;
     }
 }
 
-let ProxyCreateUser = (function(){
-    let init = null  
+let ProxyCreateUser = (function() {
+    let init = null;
     return function(name, age) {
-        console.log('init', init)
-        if(!init) {
-            init = new CreateUser(name, age)
+        if (!init) {
+            init = new CreateUser(name, age);
         }
-        return init
-    }
-})()
+        return init;
+    };
+})();
 
-let a = new ProxyCreateUser('离散1', 1)
-let b = new ProxyCreateUser('离散2', 2)
+let a = new ProxyCreateUser('离散1', 1);
+let b = new ProxyCreateUser('离散2', 2);
 
-console.log(a === b) // true 说明是同一个实例，并没有再创建
+console.log(a === b); // true 说明是同一个实例，并没有再创建
 ```
 
 ### 观察者（发布订阅）模式
