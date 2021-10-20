@@ -16,7 +16,7 @@ title: 实现 new
 function create(Con) {
     // Object.create()方法创建一个新对象，使用现有的对象来提供新创建的对象的__proto__
     // 创建对象，拿到构造函数的属性和方法，相当于 obj.__proto__ = Con.prototype
-    let obj = Object.create(Con.prototype);
+    let obj = Object.create(Con.prototype); // 或者 let obj = {}; Object.setPrototypeOf(obj, Con.prototype);
 
     // 获取参数，其含义相当于 arguments.slice(1)，slice()是数组的方法，由于 arguments 不是数组，只是类数组，不具备所有数组原型的方法
     // 所以如果arguments要使用数组的方法，这里就通过修改this指针的方式，让 arguments 继承 array。然后arguments就可以使用数组中的各种方法了
