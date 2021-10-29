@@ -25,7 +25,7 @@ function create(Con) {
     // 将 obj 绑定到构造函数上，并且传入剩余的参数
     let result = Con.apply(obj, argArr);
 
-    // 若是对象则按照正常返回值处理，若是原始值则忽略
+    // 若是对象则按照正常返回值处理，若是原始值则忽略，确保返回的为对象
     // 如果用 typeof 判断， null 也是 Object，所以用 instanceof 进行判断
     return result instanceof Object ? result : obj;
 }
