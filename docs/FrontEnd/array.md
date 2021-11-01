@@ -214,7 +214,9 @@ array.some(function(currentValue,index,arr),thisValue)
 let arr = { '0': '一', '1': '二', '2': '三', length: 3 };
 ```
 
--   [].slice 的理解
+-   [].slice 的理解  
+
+补充：我们都知道`slice`是js数组的原生方法，所以在使用时还有一种写法就是`Array.prototype.slice.call()`
 
 ```js
 [].slice === Array.prototype.slice; // true
