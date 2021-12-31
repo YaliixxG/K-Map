@@ -9,6 +9,7 @@ module.exports = [
     {
         title: '前端',
         children: [
+            '/FrontEnd/deepCopy',
             '/FrontEnd/memoryLeak',
             '/FrontEnd/TailCall',
             '/FrontEnd/callStack',
