@@ -10,6 +10,7 @@ module.exports = [
         title: '前端',
         children: [
             '/FrontEnd/curry',
+            '/FrontEnd/memoize',
             '/FrontEnd/deepCopy',
             '/FrontEnd/memoryLeak',
             '/FrontEnd/TailCall',
