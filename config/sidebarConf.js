@@ -7,7 +7,7 @@
  */
 module.exports = [
     {
-        title: '前端',
+        title: '前端杂记',
         children: [
             '/FrontEnd/curry',
             '/FrontEnd/memoize',
