@@ -131,17 +131,26 @@ let obj = {
     }
 };
 
-// 获取对象类型
-function getDataType(obj) {
-    return Object.prototype.toString.call(obj).slice(8, -1);
+function getDataType(data) {
+    return Object.prototype.toString.call(data).slice(-8, 1);
 }
 
 function deepCopy(obj) {
-    let type = getDataType(obj);
-    let new_obj = type === 'Array' ? [] : {};
+    if (typeof obj !== 'object') return;
+
+    // 错误写法
+    // let type = getDataType(obj)
+    // let new_obj = type === 'Array' ? [] : {};
+    // 若这里用 getDataType(obj)来判断是否是数组，会出现更改原对象数组中的对象元素时，拷贝的对象中数据也变化的问题
+    let new_obj = obj instanceof Array ? [] : {};
+
     for (let [key, value] of Object.entries(obj)) {
-        // 对象，数组类型都需要递归，所以不需要调用getDataType知道精确的类型
-        new_obj[key] = typeof value === 'object' ? deepCopy(value) : value;
+        // 错误写法
+        // new_obj[key] = typeof value === 'object' ? deepCopy(value) : value;
+        // 若这里用 typeof value === 'object 来判断是不是对象或数组类型时，是不合适的。因为遇到 new String('1')，或者 new Number(2)这种对象包装的基本类型，则会出现直接成{}的情况
+        new_obj[key] = ['Array', 'Object'].includes(vType)
+            ? deepCopy(value)
+            : value;
     }
     return new_obj;
 }
