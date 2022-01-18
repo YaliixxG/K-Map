@@ -9,6 +9,7 @@ module.exports = [
     {
         title: '前端杂记',
         children: [
+            '/FrontEnd/instanceof',
             '/FrontEnd/curry',
             '/FrontEnd/memoize',
             '/FrontEnd/deepCopy',
