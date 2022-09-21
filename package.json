@@ -25,6 +25,6 @@
   },
   "dependencies": {
     "leancloud-storage": "^3.13.2",
-    "valine": "^1.3.6"
+    "valine": "^1.5.0"
   }
 }
