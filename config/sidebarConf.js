@@ -40,7 +40,7 @@ module.exports = [
             '/FrontEnd/ssr',
             '/FrontEnd/loadingSlow',
             '/FrontEnd/sliceToUpdate',
-            '/FrontEnd/ssr',
+            '/FrontEnd/interesting',
             '/FrontEnd/Vue3',
             '/FrontEnd/webpackOptimize'
         ]
