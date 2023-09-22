@@ -67,7 +67,7 @@ function Person(job, name, age) {
 */
 function Temp1() {}
 Temp1.prototype = Animal.prototype;
-const personProtoType = new Temp1(); // 原型链继承，此时需要把personProtoType当做 Person 的原型对象来理解
+const personProtoType = new Temp1(); // 原型链继承(被继承对象的原型对象指向父级的实例)，继承后此时需要把personProtoType当做 Person 的原型对象来理解
 personProtoType.constructor = Person; // 既然是 Person 的原型对象了，所以指向不能错，需完善指向
 Person.prototype = personProtoType; // 完善指向
 
