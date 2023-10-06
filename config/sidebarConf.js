@@ -41,8 +41,9 @@ module.exports = [
             '/FrontEnd/loadingSlow',
             '/FrontEnd/sliceToUpdate',
             '/FrontEnd/interesting',
-            '/FrontEnd/Vue3',
-            '/FrontEnd/webpackOptimize'
+            '/FrontEnd/webpackOptimize',
+            '/FrontEnd/virtual-list',
+            '/FrontEnd/Vue3'
         ]
     },
     {
